@@ -1,0 +1,8 @@
+{
+   "name": "sjsxc",
+   "version": "0.6.0a",
+   "description": "Real-time chat app for SOGo",
+   "homepage": "http://jsxc.org/",
+   "license": "MIT",
+   "author": "Klaus Herberth <klaus@jsxc.org>"
+}
