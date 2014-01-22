@@ -12,7 +12,7 @@ body {
 }
 
 .jsxc_offline {
-	border-left: 4px solid #A4A4A4;
+	border-left: 4px solid #cfcfcf;
 }
 
 .jsxc_hidden {
@@ -99,33 +99,21 @@ p.jsxc_center {
 }
 
 div#jsxc_roster {
-	/*position:fixed;
-    top:0px;
-    right:0px;
-    width:200px;
-    overflow:visible;
-    height:100%;
-    border-left:4px solid #A4A4A4;
-    z-index:80;
-    padding-top: 40px;
-    padding-bottom: 30px;
-    background: url("http://localhost/owncloud/core/img/noise.png") #383C43;
-    box-shadow: 0px 0px 7px #000000;*/
 	position: fixed;
 	top: 30px;
 	right: 0px;
 	width: 200px;
 	overflow: visible;
 	height: 100%;
-	border-left: 4px solid #A4A4A4;
+	border-left: 1px solid #aaa;
 	z-index: 80;
 	margin-left: 10px;
-	box-shadow: 0px 0px 7px #000000;
-	background-color:#383C43;
+	box-shadow: -4px 0px #E6E7E6;
+	background-color: #E6E7E6;
 }
 
 div#jsxc_roster .slimScrollDiv {
-	left: -4px;
+/* 	left: -5px; */
 }
 
 ul#jsxc_buddylist {
@@ -139,11 +127,11 @@ ul#jsxc_buddylist li {
 	padding: 0px;
 	margin: 0px;
 	height: 30px;
-	border-bottom: 1px solid #939393;
+	border-bottom: 1px solid #aaa;
 	cursor: pointer;
 	width: 200px;
 	position: relative;
-	color: #939393;
+	color: #555;
 	font-family: Arial;
 	line-height: 30px;
 	padding-left: 3px;
@@ -151,15 +139,14 @@ ul#jsxc_buddylist li {
 }
 
 ul#jsxc_buddylist li:hover {
-	color: #FAFAFA;
+	color: #000;
 }
 
 ul#jsxc_buddylist li.jsxc_oneway {
 	opacity: 0.7;
 }
 
-ul#jsxc_buddylist li .jsxc_name {
-	width: 160px;
+li .jsxc_name {
 	overflow: hidden;
 	height: 30px;
 	cursor: pointer;
@@ -168,7 +155,7 @@ ul#jsxc_buddylist li .jsxc_name {
 }
 
 ul#jsxc_buddylist li:hover .jsxc_name {
-	width: 130px;
+/* 	width: 130px; */
 }
 
 ul#jsxc_buddylist.jsxc_hideOffline .jsxc_offline {
@@ -180,14 +167,14 @@ ul#jsxc_buddylist.jsxc_hideOffline .jsxc_offline {
 	height: 25px;
 	line-height: 25px;
 	margin-top: 2px;
-	margin-right: 2px;
-	background-color: #a3a3a3;
+	margin-right: 4px;
+	background-color: #9abcd8;
 	border-radius: 2px;
 	float: left;
 	text-align: center;
 	font-weight: bold;
 	font-size: 30px;
-	color: #b1b1b1;
+	color: #b8d0e3;
 	overflow: hidden;
 	position: relative;
 }
@@ -224,6 +211,8 @@ div#jsxc_menu:hover {
 }
 
 div#jsxc_menu ul {
+	padding:0px;
+   margin:0px;
 	width: 190px;
 	position: absolute;
 	bottom: 30px;
@@ -232,9 +221,12 @@ div#jsxc_menu ul {
 	border-top: 1px solid #939393;
 	padding-left: 10px;
 	background-color: #282323;
+	list-style: none;
 }
 
 div#jsxc_menu li {
+	padding:0px;
+   margin:0px;
 	height: 30px;
 	background-color: #282323;
 	color: #939393;
@@ -254,10 +246,17 @@ div#jsxc_menu ul li:last-child {
 }
 
 ul#jsxc_buddylist .jsxc_options {
-	position: absolute;
-	right: 0px;
-	top: 0px;
+/* 	position: absolute; */
+/* 	right: 0px; */
+/* 	top: 0px; */
 	height: 30px;
+	float:right;
+	overflow:hidden;
+/* 	display:none; */
+	transition: width 2s;
+	width:0px;
+   -webkit-transition: width .5s; /* Safari */
+   white-space: nowrap;
 }
 
 ul#jsxc_buddylist .jsxc_options div {
@@ -266,12 +265,12 @@ ul#jsxc_buddylist .jsxc_options div {
 	width: 20px;
 	cursor: pointer;
 	opacity: 0.7;
-	float: left;
-	display: none
+	display:inline-block;
 }
 
-ul#jsxc_buddylist li[data-type="chat"]:hover .jsxc_options div {
-	display: block;
+ul#jsxc_buddylist li[data-type="chat"]:hover .jsxc_options {
+/* 	display: block; */
+	width:40px;
 }
 
 ul#jsxc_buddylist .jsxc_options div:hover {
@@ -279,10 +278,11 @@ ul#jsxc_buddylist .jsxc_options div:hover {
 }
 
 ul#jsxc_buddylist .jsxc_rename {
-	background-image: url('../img/edit.png');
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: 15px 15px;
+/* 	background-image: url('../img/edit.png'); */
+/* 	background-repeat: no-repeat; */
+/* 	background-position: center center; */
+/* 	background-size: 15px 15px; */
+   transform: scaleX(-1);
 }
 
 ul#jsxc_buddylist .jsxc_delete {
@@ -310,9 +310,11 @@ div#jsxc_toggleRoster {
 
 div#jsxc_windowList {
 	position: fixed;
-	bottom: 0px;
+	z-index: 10;
+	bottom: 30px;
 	right: 0px;
 	width: 100%;
+	height: 0px;
 }
 
 div#jsxc_windowList>ul {
@@ -337,14 +339,6 @@ div#jsxc_windowList>ul>li {
 	margin-right: 5px;
 	box-shadow: 0px 0px 5px #000;
 	cursor: pointer;
-}
-
-div#jsxc_windowList>ul>li .jsxc_name {
-	cursor: pointer;
-	overflow:hidden;
-	text-overflow: ellipsis;
-   white-space: nowrap;
-   width: 150px;
 }
 
 div#jsxc_windowList>ul>li.jsxc_unreadMsg .jsxc_name {
@@ -388,7 +382,7 @@ div.jsxc_window {
 	position: absolute;
 	bottom: 30px;
 	right: 0px;
-	background-color: #A4A4A4;
+	background-color: #CCDDEC;
 	box-shadow: 0px 0px 5px #000;
 	z-index: 80;
 }
@@ -407,7 +401,6 @@ div.jsxc_window .jsxc_tools {
 div.jsxc_window .jsxc_textarea {
 	width: 200px;
 	height: 200px;
-	background-color: #A4A4A4;
 	overflow: hidden;
 }
 
@@ -424,6 +417,7 @@ div.jsxc_chatmessage,input.jsxc_chatmessage {
 	width: 157px;
 	word-wrap: break-word;
 	background-color: #fff;
+	background-image: none !important;
 }
 
 div.jsxc_chatmessage a {
@@ -524,7 +518,7 @@ div.jsxc_settings li:first-child {
 	border-top: 1px solid #ccc;
 }
 
-div.jsxc_settings li:hover:not (.jsxc_disabled ){
+div.jsxc_settings li:hover:not(.jsxc_disabled){
 	color: #fff;
 	background-color: #3F8FBA;
 }
@@ -625,4 +619,8 @@ div.jsxc_transfer.jsxc_enc.jsxc_trust {
    margin-top:3px;
    margin-right:5px;
    box-shadow: 0px 0px 3px #000; 
+}
+
+#messageContent, #mailboxContent{
+	border-right: 1px solid #fff;
 }

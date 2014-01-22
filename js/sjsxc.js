@@ -35,7 +35,9 @@
 
       var roster_width = (state == 'shown') ? $('#jsxc_roster').outerWidth() : 0;
       // var navigation_width = $('#navigation').width();
-
+//      roster_width += 4;
+      console.log('Roster width ', roster_width);
+      
       wrapper.animate({
          marginRight: (roster_width) + 'px'
       }, duration);
@@ -51,9 +53,10 @@
    function onRosterReady() {
 
       var roster_width = $('#jsxc_roster').outerWidth();
+   
       // var navigation_width = $('#navigation').width();
       var roster_right = parseFloat($('#jsxc_roster').css('right'));
-      var mr = (200 + ($.isNumeric(roster_right) ? roster_right : 0));
+      var mr = (204 + ($.isNumeric(roster_right) ? roster_right : 0));
 
       $('#toolbar').css('marginRight', mr + 'px');
       $('#rightPanel').css('marginRight', mr + 'px');
@@ -67,7 +70,9 @@
 
       var f = null;
       for (f in files) {
-         $("head").append($("<link rel='stylesheet' href='/SOGo.woa/WebServerResources/jsxc/css/" + name + ".css' type='text/css' media='screen' />"));
+         if (files.hasOwnProperty(f)) {
+            $("head").append($("<link rel='stylesheet' href='/SOGo.woa/WebServerResources/sjsxc/css/" + files[f] + ".css' type='text/css' media='screen' />"));
+         }
       }
    }
 
@@ -75,7 +80,7 @@
    $(function() {
 
       if ($('#linkBanner').length == 0) {
-         return 0;
+         return;
       }
 
       lazyLoadCss([ 'jquery.colorbox', 'main' ]);
@@ -114,14 +119,16 @@
                console.log(msg);
          },
          rosterAppend: 'body',
-         root: '/SOGo.woa/WebServerResources/jsxc/',
+         root: ResourcesURL + '/jsxc/',
          // @TODO: don't include get turn credentials routine into jsxc
          turnCredentialsPath: null,
          formFound: function() {
             var submit = pt("submit");
             submit.stopObserving("click", onLoginClick);
+            
             var userName = pt("userName");
             userName.stopObserving("keydown", onFieldKeyDown);
+            
             var passw = pt("password");
             passw.stopObserving("keydown", onFieldKeyDown);
 
