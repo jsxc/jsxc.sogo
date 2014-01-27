@@ -20,8 +20,13 @@
 
                if (jsxc.storage.getUserItem('buddy_' + cid)) {
                   jsxc.gui.update(cid);
+                  s.click(function(){
+                     jsxc.gui.window.open(cid);
+                  });
                } else {
-                  console.log("not found " + cid);
+                  s.click(function(){
+                     jsxc.gui.showContactDialog(href);
+                  });
                }
             }
          });
@@ -83,7 +88,7 @@
          return;
       }
 
-      lazyLoadCss([ 'jquery.colorbox', 'main' ]);
+      lazyLoadCss([ 'jquery.colorbox', 'jsxc.sogo' ]);
 
       $(document).on('ready.roster.jsxc', onRosterReady);
       $(document).on('toggle.roster.jsxc', onRosterToggle);
@@ -119,7 +124,7 @@
                console.log(msg);
          },
          rosterAppend: 'body',
-         root: ResourcesURL + '/jsxc/',
+         root: ResourcesURL + '/sjsxc/',
          // @TODO: don't include get turn credentials routine into jsxc
          turnCredentialsPath: null,
          formFound: function() {
