@@ -1,3 +1,10 @@
+var sjsxc = {};
+sjsxc.config = {
+    boshUrl: 'http://localhost:5480/http-bind/',
+    domain: 'localhost',
+    resource: ''
+};
+
 (function($, pt) {
 
    if (typeof configureLinksInMessage === "function") {
@@ -30,18 +37,13 @@
                }
             }
          });
-         console.log("Add X to " + mails.length);
       };
    }
 
    function onRosterToggle(event, state, duration) {
       var wrapper = $('#rightPanel');
       var control = $('#toolbar');
-
       var roster_width = (state == 'shown') ? $('#jsxc_roster').outerWidth() : 0;
-      // var navigation_width = $('#navigation').width();
-//      roster_width += 4;
-      console.log('Roster width ', roster_width);
       
       wrapper.animate({
          marginRight: (roster_width) + 'px'
@@ -59,7 +61,6 @@
 
       var roster_width = $('#jsxc_roster').outerWidth();
    
-      // var navigation_width = $('#navigation').width();
       var roster_right = parseFloat($('#jsxc_roster').css('right'));
       var mr = (204 + ($.isNumeric(roster_right) ? roster_right : 0));
 
@@ -88,7 +89,7 @@
          return;
       }
 
-      lazyLoadCss([ 'jquery.colorbox', 'jsxc.sogo' ]);
+      lazyLoadCss([ 'jquery.colorbox', '../js/jsxc/jsxc', 'jsxc.sogo' ]);
 
       $(document).on('ready.roster.jsxc', onRosterReady);
       $(document).on('toggle.roster.jsxc', onRosterToggle);
@@ -103,16 +104,12 @@
             pass: '#password',
             preJid: function(jid) {
 
-               var resource = '';
-               var domain = 'localhost';
-               var boshUrl = '/bosh/';
-
-               jsxc.storage.setItem('boshUrl', boshUrl);
+               jsxc.storage.setItem('boshUrl', sjsxc.config.boshUrl);
 
                if (jid.match(/@(.*)$/))
-                  return (jid.match(/\/(.*)$/)) ? jid : jid + resource;
+                  return (jid.match(/\/(.*)$/)) ? jid : jid + sjsxc.config.resource;
 
-               return jid + '@' + domain + resource;
+               return jid + '@' + sjsxc.config.domain + sjsxc.config.resource;
             }
          },
          logoutElement: $('#logoff'),

@@ -11,7 +11,7 @@
 }
 
 .jsxc_spot.jsxc_away {
-   background-color:#;
+   background-color:orange;
 }
 
 .jsxc_offline {
@@ -22,130 +22,29 @@
    background-color:#cfcfcf;
 }
 
-.jsxc_hidden {
-	display: none;
-}
-
 .jsxc_invalid {
 	border: 2px solid red !important;
 }
 
-p.jsxc_right {
-	text-align: right;
-}
-
-p.jsxc_center {
-	text-align: center;
-}
-
-#jsxc_dialog {
-	padding: 10px;
-	min-width: 300px;
-}
-
-#jsxc_dialog h3 {
-	font-size: 120%;
-	font-weight: bold;
-	margin-bottom: 10px;
-	margin-top: 20px;
-}
-
-#jsxc_dialog p input {
-	margin-bottom: 5px;
-	width: 60%;
-}
-
-#jsxc_dialog p label {
-	display: block;
-	width: 30%;
-	float: left;
-	padding: 6px 0px;
-}
-
-#jsxc_dialog .jsxc_right {
-	padding-top: 10px;
-}
-
 div#jsxc_roster {
-	position: fixed;
 	top: 30px;
-	right: 0px;
-	width: 200px;
-	overflow: visible;
-	height: 100%;
 	border-left: 1px solid #aaa;
-	z-index: 80;
-	margin-left: 10px;
 	box-shadow: -4px 0px #E6E7E6;
 	background-color: #E6E7E6;
-}
-
-#jsxc_roster .jsxc_wait{
-   width: 160px;
-   height: 100%;
-   position:absolute;
-   top:0px;
-   left:0px;
-   padding: 20px;
-   background-color:#fff;
 }
 
 div#jsxc_roster .slimScrollDiv {
  	left: -5px; 
 }
 
-#jsxc_roster input{
-	position:absolute;
-	left: 31px;
-	top: 2px;
-	width: 157px;
-	height: 22px;
-	padding: 2px;
-	border:0px;
-	background-image:none;
-	background-color:#fff;
-	border-radius:3px;
-	-moz-box-shadow: inset 0 0 5px #888;
-	 -webkit-box-shadow: inset 0 0 5px#888;
-	 box-shadow: inner 0 0 5px #888;
-}
-
-ul#jsxc_buddylist {
-	list-style: none;
-	padding: 0px;
-	margin: 0px;
-	width: 204px;
-}
 
 ul#jsxc_buddylist li {
-	padding: 0px;
-	margin: 0px;
-	height: 30px;
 	border-bottom: 1px solid #aaa;
-	cursor: pointer;
-	width: 200px;
-	position: relative;
 	color: #555;
-	font-family: Arial;
-	line-height: 30px;
-	padding-left: 3px;
-	z-index: 85;
 }
 
 ul#jsxc_buddylist li:hover {
 	color: #000;
-}
-
-ul#jsxc_buddylist li.jsxc_oneway {
-	opacity: 0.7;
-}
-
-li .jsxc_name {
-	overflow: hidden;
-	height: 30px;
-	cursor: pointer;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 }
 
 ul#jsxc_buddylist.jsxc_hideOffline .jsxc_offline {
@@ -153,47 +52,13 @@ ul#jsxc_buddylist.jsxc_hideOffline .jsxc_offline {
 }
 
 .jsxc_avatar,ul#jsxc_buddylist li:hover .jsxc_avatar{
-	width: 25px;
-	height: 25px;
-	line-height: 25px;
-	margin-top: 2px;
-	margin-right: 4px;
 	background-color: #9abcd8;
-	border-radius: 2px;
-	float: left;
-	text-align: center;
-	font-weight: bold;
-	font-size: 30px;
 	color: #b8d0e3;
-	overflow: hidden;
-	position: relative;
 }
 
-.jsxc_avatar img {
-	display: block;
-	width: 25px;
-	height: 25px;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-}
-
-div#jsxc_roster p {
-	color: #939393;
-}
-
-div#jsxc_menu {
-	position: absolute;
-	left: 0px;
-	bottom: 30px;
-	height: 30px;
-	width: 190px;
-	border-top: 1px solid #939393;
-	padding-left: 10px;
+/*div#jsxc_menu {
 	background-color: #282323;
 	color: #939393;
-	cursor: pointer;
-	line-height: 30px;
 }
 
 div#jsxc_menu:hover {
@@ -233,308 +98,10 @@ div#jsxc_menu li:hover {
 
 div#jsxc_menu ul li:last-child {
 	border-bottom: 1px solid #939393;
-}
-
-ul#jsxc_buddylist .jsxc_options {
-	height: 30px;
-	float:right;
-	overflow:hidden;
-	transition: width 2s;
-	width:0px;
-   -webkit-transition: width .5s; /* Safari */
-   white-space: nowrap;
-/*    border:1px solid red; */
-}
-
-ul#jsxc_buddylist .jsxc_options div {
-	line-height: 30px;
-	height: 30px;
-	width: 20px;
-	cursor: pointer;
-	opacity: 0.7;
-	display:inline-block;
-	font-weight:bold;
-	text-align:center;
-	font-size: 17px;
-	overflow:hidden;
-}
-
-ul#jsxc_buddylist li[data-type="chat"]:hover .jsxc_options {
-	width:50px;
-}
-
-ul#jsxc_buddylist .jsxc_options div:hover {
-	opacity: 1.0;
-}
-
-ul#jsxc_buddylist .jsxc_rename {
-/* 	background-image: url('../img/edit.png'); */
-/* 	background-repeat: no-repeat; */
-/* 	background-position: center center; */
-/* 	background-size: 15px 15px; */
-   transform: scaleX(-1);
-}
-
-ul#jsxc_buddylist .jsxc_delete {
-/* 	text-transform: lowercase; */
-/* 	font-weight: bold; */
-/* 	vertical-align: middle; */
-/* 	font-size: 17px; */
-}
-
-div#jsxc_toggleRoster {
-	width: 14px;
-	height: 100%;
-	position: absolute;
-	left: -14px !important;
-	top: 0px;
-	z-index: 110;
-	background-color: transparent;
-	cursor: pointer;
-}
-
-#jsxc_toggleRoster:hover {
-	background-color: #a4a4a4;
-	opacity: 0.5;
-}
-
-div#jsxc_windowList {
-	position: fixed;
-	z-index: 10;
-	bottom: 30px;
-	right: 0px;
-	width: 100%;
-	height: 0px;
-}
-
-div#jsxc_windowList>ul {
-	list-style: none;
-	padding: 0px;
-	margin: 0px;
-	padding-right: 210px;
-	height: 30px;
-	overflow: visible;
-}
-
-div#jsxc_windowList>ul>li {
-	padding: 0px;
-	margin: 0px;
-	display: block;
-	float: right;
-	width: 200px;
-	background-color: #282323;
-	height: 30px;
-	position: relative;
-	overflow: visible;
-	margin-right: 5px;
-	box-shadow: 0px 0px 5px #000;
-	cursor: pointer;
-}
-
-div#jsxc_windowList>ul>li.jsxc_unreadMsg .jsxc_name {
-	font-style: italic;
-}
-
-div#jsxc_windowList>ul>li.jsxc_unreadMsg .jsxc_cycle {
-	background-color: orange;
-}
-
-div.jsxc_cycle {
-	position: absolute;
-	bottom: 9px;
-	right: 5px;
-	height: 12px;
-	width: 12px;
-	border-radius: 6px;
-}
-
-div.jsxc_bar {
-	cursor: pointer;
-	height: 30px;
-	line-height: 30px;
-	margin-left:2px;
-	color: #939393;
-}
-
-div.jsxc_bar:hover {
-	color: #FAFAFA;
-}
+}*/
 
 div.jsxc_window {
-	display: none;
-	width: 200px;
-	height: 255px;
-	position: absolute;
-	bottom: 30px;
-	right: 0px;
 	background-color: #CCDDEC;
-	box-shadow: 0px 0px 5px #000;
-	z-index: 80;
-}
-
-div.jsxc_window .jsxc_tools {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 200px;
-	height: 23px;
-	background-color: #282323;
-	box-shadow: 0px 5px 5px -5px #000;
-	z-index: 100;
-}
-
-div.jsxc_window .jsxc_textarea {
-	width: 200px;
-	height: 200px;
-	overflow: hidden;
-}
-
-div.jsxc_window .slimScrollDiv {
-	position: absolute;
-	top: 22px;
-	left: 0px;
-}
-
-div.jsxc_chatmessage,input.jsxc_chatmessage {
-	margin: 5px;
-	border-radius: 5px !important;
-	padding: 3px;
-	width: 157px;
-	word-wrap: break-word;
-	background-color: #fff;
-	background-image: none !important;
-}
-
-div.jsxc_chatmessage a {
-	color: blue;
-	text-decoration: underline;
-}
-
-div.jsxc_in,input.jsxc_in {
-	text-align: left;
-	margin-right: 30px;
-	border: 1px solid blue;
-}
-
-div.jsxc_out,input.jsxc_out {
-	text-align: right;
-	margin-left: 30px;
-	border: 1px solid green !important;
-}
-
-div.jsxc_sys {
-	width: 182px;
-	border: 1px solid black;
-}
-
-div.jsxc_chatmessage img {
-	width: 19px;
-	height: 19px;
-}
-
-.jsxc_window input.jsxc_textinput {
-	position: absolute;
-	top: 226px;
-	left: 30px;
-	width: 157px;
-	height: 16px;
-	margin: 0px;
-	line-height: 16px;
-}
-
-.jsxc_window .jsxc_close {
-	text-transform: uppercase;
-	color: #939393;
-	font-family: Arial;
-	font-weight: bold;
-	line-height: 17px;
-	cursor: pointer;
-	float: right;
-	padding: 3px;
-}
-
-.jsxc_window .jsxc_close:hover {
-	color: #FAFAFA;
-}
-
-div.jsxc_settings {
-	color: #939393;
-	font-family: Arial;
-	line-height: 17px;
-	cursor: pointer;
-	background-image: url('../img/gear.png');
-	background-repeat: no-repeat;
-	background-position: center center;
-	width: 17px;
-	height: 17px;
-	display: block;
-	float: left;
-	overflow: visible;
-	padding: 3px;
-}
-
-div.jsxc_settings:hover,div.jsxc_settings.hover {
-	background-image: url('../img/gear_hover.png');
-}
-
-div.jsxc_settings ul {
-	list-style: none;
-	padding: 0px;
-	margin: 0px;
-	position: absolute;
-	top: 23px;
-	left: 0px;
-	box-shadow: 0px 5px 5px -5px #000;
-	z-index: 90;
-	overflow: visible;
-	background-color: #282323;
-	display: none;
-}
-
-div.jsxc_settings li {
-	width: 170px;
-	margin-left: 20px;
-	padding-left: 10px;
-	height: 30px;
-	line-height: 30px;
-}
-
-div.jsxc_settings li:first-child {
-	border-top: 1px solid #ccc;
-}
-
-div.jsxc_settings li:hover:not(.jsxc_disabled){
-	color: #fff;
-	background-color: #3F8FBA;
-}
-
-div.jsxc_settings li.jsxc_disabled {
-	color: #595959;
-	cursor: default;
-}
-
-div.jsxc_transfer {
-	padding: 3px;
-	width: 17px;
-	height: 17px;
-	background-image: url('../img/padlock_open.png');
-	background-repeat: no-repeat;
-	background-position: center center;
-	cursor: pointer;
-	float: left;
-}
-
-div.jsxc_transfer.jsxc_fin {
-	background-image: url('../img/padlock_close_grey.png');
-}
-
-div.jsxc_transfer.jsxc_enc {
-	background-image:
-		url('../img/padlock_close_orange.png');
-}
-
-div.jsxc_transfer.jsxc_enc.jsxc_trust {
-	background-image: url('../img/padlock_close_green.png');
 }
 
 div#jsxc_roster .slimScrollDiv {

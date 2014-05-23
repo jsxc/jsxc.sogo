@@ -2,7 +2,15 @@ JavaScript XMPP Client for SOGo
 =====
 
 ```
-$> defaults write sogod SOGoUIAdditionalJSFiles '(
+cd /opt
+git clone https://github.com/sualko/sjsxc
+cd sjsxc
+git submodule update --init --recursive
+ln -s /opt/sjsxc /usr/lib/GNUstep/SOGo/WebServerResources/
+```
+
+```
+defaults write sogod SOGoUIAdditionalJSFiles '(
     "sjsxc/js/lib/jquery.ui.min.js",
     "sjsxc/js/jsxc/lib/jquery.colorbox-min.js",
     "sjsxc/js/jsxc/lib/jquery.slimscroll.js",
@@ -25,4 +33,8 @@ $> defaults write sogod SOGoUIAdditionalJSFiles '(
     "sjsxc/js/jsxc/jsxc.lib.webrtc.js",
     "sjsxc/js/sjsxc.js"
 )'
+```
+
+```
+sudo service sogo restart
 ```
