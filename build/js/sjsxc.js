@@ -1,3 +1,15 @@
+/**
+ * sjsxc v0.1.0ia - 2014-05-24
+ * 
+ * Copyright (c) 2014 Klaus Herberth <klaus@jsxc.org> <br>
+ * Released under the MIT license
+ * 
+ * Please see http://jsxc.org/
+ * 
+ * @author Klaus Herberth <klaus@jsxc.org>
+ * @version 0.1.0ia
+ */
+
 /* global jsxc, $, configureLinksInMessage:true, SOGoResizableTableInterface, ResourcesURL, onLoginClick, onFieldKeyDown */
 
 var sjsxc = {};

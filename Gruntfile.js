@@ -3,13 +3,13 @@ module.exports = function(grunt) {
 
    // Project configuration.
    grunt.initConfig({
-      app: grunt.file.readJSON('app.json'),
+      app: grunt.file.readJSON('package.json'),
       meta: {
          banner: grunt.file.read('js/jsxc/banner.js')
       },
       jshint: {
          options: {
-            jshintrc: '.jshintrc'
+            jshintrc: 'js/jsxc/.jshintrc'
          },
          gruntfile: {
             src: 'Gruntfile.js'
@@ -20,7 +20,7 @@ module.exports = function(grunt) {
          main: {
             files: [ {
                expand: true,
-               src: [ 'js/*.js', 'css/*', 'ajax/*', 'img/*', 'LICENSE' ],
+               src: [ 'js/*.js', 'js/lib/*.js', 'css/*', 'ajax/*', 'img/*', 'LICENSE' ],
                dest: 'build/'
             }, {
                expand: true,

@@ -1,0 +1,149 @@
+.jsxc_online {
+	border-left: 4px solid green;
+}
+
+.jsxc_spot.jsxc_online {
+   background-color:green;
+}
+
+.jsxc_away {
+	border-left: 4px solid orange;
+}
+
+.jsxc_spot.jsxc_away {
+   background-color:orange;
+}
+
+.jsxc_offline {
+	border-left: 4px solid #cfcfcf;
+}
+
+.jsxc_spot.jsxc_offline {
+   background-color:#cfcfcf;
+}
+
+.jsxc_invalid {
+	border: 2px solid red !important;
+}
+
+div#jsxc_roster {
+	top: 30px;
+	border-left: 1px solid #aaa;
+	box-shadow: -4px 0px #E6E7E6;
+	background-color: #E6E7E6;
+}
+
+div#jsxc_roster .slimScrollDiv {
+ 	left: -5px; 
+}
+
+
+ul#jsxc_buddylist li {
+	border-bottom: 1px solid #aaa;
+	color: #555;
+}
+
+ul#jsxc_buddylist li:hover {
+	color: #000;
+}
+
+ul#jsxc_buddylist.jsxc_hideOffline .jsxc_offline {
+	display: none;
+}
+
+.jsxc_avatar,ul#jsxc_buddylist li:hover .jsxc_avatar{
+	background-color: #9abcd8;
+	color: #b8d0e3;
+}
+
+/*div#jsxc_menu {
+	background-color: #282323;
+	color: #939393;
+}
+
+div#jsxc_menu:hover {
+	color: #FAFAFA;
+}
+
+div#jsxc_menu ul {
+	padding:0px;
+   margin:0px;
+	width: 190px;
+	position: absolute;
+	bottom: 30px;
+	left: 0px;
+	display: none;
+	border-top: 1px solid #939393;
+	padding-left: 10px;
+	background-color: #282323;
+	list-style: none;
+}
+
+div#jsxc_menu li {
+	padding:0px;
+   margin:0px;
+	height: 30px;
+	background-color: #282323;
+	color: #939393;
+	cursor: pointer;
+	width: 180px;
+	padding-left: 10px;
+	line-height: 30px;
+}
+
+div#jsxc_menu li:hover {
+	color: #fff;
+	background-color: #3F8FBA;
+}
+
+div#jsxc_menu ul li:last-child {
+	border-bottom: 1px solid #939393;
+}*/
+
+div.jsxc_window {
+	background-color: #CCDDEC;
+}
+
+.jsxc_window input.jsxc_textinput {
+    background-image: url();
+}
+
+div#jsxc_roster .slimScrollDiv {
+   left: 0px; 
+}
+
+.jsxc_spot {
+   display: inline-block;
+   width:10px;
+   height: 10px;
+   background-color:#fff;
+   border-radius:5px;
+   text-indent:-99999em;
+   margin-top:3px;
+   margin-right:5px;
+/*    box-shadow: 0px 0px 3px #000;  */
+   border: 1px solid #000;
+}
+
+#messageContent, #mailboxContent{
+   border-right: 1px solid #fff;
+}
+
+#jsxc_dialog .button{
+	background-color: rgba(250, 250, 250, .9);
+	color: #333;
+	font-weight:bold;
+	border: 1px solid rgba(190,190,190,.9);
+	border-radius:3px;
+	line-height: 30px;
+	height: 30px;
+	margin:.3em;
+	padding: .4em;
+	float: none;
+	background-image:none;
+	display: inline;
+}
+
+.jsxc_right{
+	margin: 0px;
+}
