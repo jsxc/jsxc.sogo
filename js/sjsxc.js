@@ -1,6 +1,6 @@
 var sjsxc = {};
 sjsxc.config = {
-    boshUrl: 'http://localhost:5480/http-bind/',
+    boshUrl: '/http-bind/', // or e.g. 'http://localhost:5280/http-bind/'
     domain: 'localhost',
     resource: ''
 };
