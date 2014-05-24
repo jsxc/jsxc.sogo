@@ -1,6 +1,20 @@
-JavaScript XMPP Client for SOGo
-=====
+# JavaScript XMPP Client for SOGo
 
+Homepage: http://www.jsxc.org
+
+Bugtracker: https://github.com/sualko/jsxc/issues
+
+Wiki: https://github.com/sualko/jsxc/wiki
+
+
+## Installation
+
+### Get the code
+__a) Packed versions__
+
+Download the latest version from [releases](https://github.com/sualko/sjsxc/releases) and extract it to <code>/usr/lib/GNUstep/SOGo/WebServerResources/</code>.
+
+__b) Nightly version__
 ```
 cd /opt
 git clone https://github.com/sualko/sjsxc
@@ -9,6 +23,10 @@ git submodule update --init --recursive
 ln -s /opt/sjsxc /usr/lib/GNUstep/SOGo/WebServerResources/
 ```
 
+### Configuration
+Adjust the values for xmpp server, bosh url and xmpp domain in <code>sjsxc/js/sjsxc.js</code> and the values for webrtc in <code>sjsxc/ajax/getturncredentials.php</code>.
+
+### Include the files
 ```
 defaults write sogod SOGoUIAdditionalJSFiles '(
     "sjsxc/js/lib/jquery.ui.min.js",
@@ -35,6 +53,7 @@ defaults write sogod SOGoUIAdditionalJSFiles '(
 )'
 ```
 
+### Restart sogo service
 ```
 sudo service sogo restart
 ```
