@@ -104,6 +104,10 @@ div.jsxc_window {
 	background-color: #CCDDEC;
 }
 
+.jsxc_window input.jsxc_textinput {
+    background-image: url();
+}
+
 div#jsxc_roster .slimScrollDiv {
    left: 0px; 
 }

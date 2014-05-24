@@ -129,3 +129,19 @@ div:fullscreen.jsxc_localvideo{
 .jsxc_videoSuitable .jsxc_name{
     font-style: italic;
 }
+
+.jsxc_video {
+    padding: 3px;
+    width: 17px;
+    height: 17px;
+    background-image: url('../js/jsxc/img/camera_icon_grey.svg');
+    background-position: center center;
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    float: left;
+}
+.jsxc_video.jsxc_disabled {
+    cursor: default;
+    opacity: 0.6;
+}

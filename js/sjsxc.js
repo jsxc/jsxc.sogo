@@ -89,7 +89,7 @@ sjsxc.config = {
          return;
       }
 
-      lazyLoadCss([ 'jquery.colorbox', '../js/jsxc/jsxc', 'jsxc.sogo' ]);
+      lazyLoadCss([ 'jquery.colorbox', '../js/jsxc/jsxc', 'webrtc', 'jsxc.sogo' ]);
 
       $(document).on('ready.roster.jsxc', onRosterReady);
       $(document).on('toggle.roster.jsxc', onRosterToggle);
