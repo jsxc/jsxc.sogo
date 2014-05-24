@@ -14,7 +14,7 @@ module.exports = function(grunt) {
          gruntfile: {
             src: 'Gruntfile.js'
          },
-         files: [ 'js/ojsxc.js' ]
+         files: [ 'js/sjsxc.js' ]
       },
       copy: {
          main: {
