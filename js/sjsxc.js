@@ -91,7 +91,7 @@ sjsxc.config = {
          return;
       }
 
-      lazyLoadCss([ 'jquery.colorbox', '../js/jsxc/jsxc', 'webrtc', 'jsxc.sogo' ]);
+      lazyLoadCss(['jquery-ui.min', 'jquery.colorbox', '../js/jsxc/jsxc', 'webrtc', 'jsxc.sogo' ]);
 
       $(document).on('ready.roster.jsxc', onRosterReady);
       $(document).on('toggle.roster.jsxc', onRosterToggle);
@@ -146,16 +146,16 @@ sjsxc.config = {
          }
       });
 
-      // Add submit link without chat functionality
-      if (jsxc.el_exists($('#body-login form'))) {
+      /* // Add submit link without chat functionality
+      if (jsxc.el_exists($('#loginCell'))) {
 
          var link = $('<a/>').text('Log in without chat').click(function() {
             jsxc.submitLoginForm();
          });
 
          var alt = $('<p id="jsxc_alt"/>').append(link);
-         $('#body-login form fieldset').append(alt);
-      }
+         $('#loginCell').append('<br/>').append(alt);
+      }*/
    });
 
 })(jQuery, $);
