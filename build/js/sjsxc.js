@@ -1,5 +1,5 @@
 /**
- * sjsxc v0.1.0 - 2014-05-28
+ * sjsxc v0.2.0-beta - 2014-06-27
  * 
  * Copyright (c) 2014 Klaus Herberth <klaus@jsxc.org> <br>
  * Released under the MIT license
@@ -7,7 +7,7 @@
  * Please see http://jsxc.org/
  * 
  * @author Klaus Herberth <klaus@jsxc.org>
- * @version 0.1.0
+ * @version 0.2.0-beta
  */
 
 /* global jsxc, $, configureLinksInMessage:true, SOGoResizableTableInterface, ResourcesURL, onLoginClick, onFieldKeyDown */
@@ -96,14 +96,12 @@ sjsxc.config = {
       }
    }
 
-   // initialization
-   $(function() {
+   lazyLoadCss(['jquery-ui.min', 'jquery.colorbox', '../js/jsxc/jsxc', '../js/jsxc/jsxc.webrtc', 'jsxc.sogo' ]);
 
+   var sjsxc_start = function() {
       if ($('#linkBanner').length === 0) {
          return;
       }
-
-      lazyLoadCss(['jquery-ui.min', 'jquery.colorbox', '../js/jsxc/jsxc', 'webrtc', 'jsxc.sogo' ]);
 
       $(document).on('ready.roster.jsxc', onRosterReady);
       $(document).on('toggle.roster.jsxc', onRosterToggle);
@@ -131,7 +129,7 @@ sjsxc.config = {
          logoutElement: $('#logoff'),
          checkFlash: false,
          rosterAppend: 'body',
-         root: ResourcesURL + '/sjsxc/',
+         root: ResourcesURL + '/sjsxc/js/jsxc',
          turnCredentialsPath: '/SOGo.woa/WebServerResources/sjsxc/ajax/getturncredentials.php',
          formFound: function() {
             var submit = pt("submit");
@@ -168,6 +166,21 @@ sjsxc.config = {
          var alt = $('<p id="jsxc_alt"/>').append(link);
          $('#loginCell').append('<br/>').append(alt);
       }*/
+   };
+
+   var sjsxc_init = function() {
+        if($('#jsxc_sogo_test').css('background-color') !== ''){
+            sjsxc_start();
+        } else {
+            setTimeout(sjsxc_init, 50);
+        }
+   };
+
+   $(function(){
+        var el = $('<div>').attr('class', 'jsxc_window').attr('id', 'jsxc_sogo_test');
+        $('body').append(el);
+
+        setTimeout(sjsxc_init, 20);
    });
 
 })(jQuery, $);
