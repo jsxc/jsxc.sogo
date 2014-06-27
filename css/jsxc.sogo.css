@@ -37,6 +37,9 @@ div#jsxc_roster .slimScrollDiv {
  	left: -5px; 
 }
 
+div#jsxc_roster .jsxc_name:hover {
+    color: #000;
+}
 
 ul#jsxc_buddylist li {
 	border-bottom: 1px solid #aaa;
@@ -105,7 +108,11 @@ div.jsxc_window {
 }
 
 .jsxc_window input.jsxc_textinput {
-    background-image: url();
+    background: #fff;
+}
+
+div.jsxc_window .jsxc_emoticons ul {
+    list-style: none;
 }
 
 div#jsxc_roster .slimScrollDiv {
