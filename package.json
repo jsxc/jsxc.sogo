@@ -1,6 +1,6 @@
 {
    "name": "sjsxc",
-   "version": "0.2.0-beta",
+   "version": "0.2.0",
    "description": "Real-time chat app for SOGo",
    "homepage": "http://jsxc.org/",
    "bugs": "https://github.com/sualko/jsxc/issues",

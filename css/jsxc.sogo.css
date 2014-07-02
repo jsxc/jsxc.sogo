@@ -44,6 +44,7 @@ div#jsxc_roster .jsxc_name:hover {
 ul#jsxc_buddylist li {
 	border-bottom: 1px solid #aaa;
 	color: #555;
+    width: auto;
 }
 
 ul#jsxc_buddylist li:hover {
@@ -52,6 +53,11 @@ ul#jsxc_buddylist li:hover {
 
 ul#jsxc_buddylist.jsxc_hideOffline .jsxc_offline {
 	display: none;
+}
+
+ul#jsxc_buddylist .jsxc_control:after {
+    color: #888;
+    font-size: 17px;
 }
 
 .jsxc_avatar,ul#jsxc_buddylist li:hover .jsxc_avatar{
