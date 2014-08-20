@@ -1,3 +1,4 @@
 node_modules
+build/js/sjsxc.config.js
 js/sjsxc.config.js
 *.zip

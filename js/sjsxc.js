@@ -1,4 +1,4 @@
-/* global jsxc, $, configureLinksInMessage:true, SOGoResizableTableInterface, ResourcesURL, onLoginClick, onFieldKeyDown */
+/* global jsxc, sjsxc, initPreferences, $, configureLinksInMessage:true, SOGoResizableTableInterface, ResourcesURL, onLoginClick, onFieldKeyDown */
 
 (function($, pt) {
 
@@ -132,7 +132,6 @@
 
                 $('#connectForm').submit(onLoginClick);
                 $('#submit').click(function() {
-                    console.log("submit click");
                     $('#connectForm').submit();
                 });
                 $('#userName, #password').keypress(function(ev) {
@@ -143,7 +142,7 @@
                     $('#connectForm').submit();
                 });
             },
-            loadSettings: function(username, password) {
+            loadSettings: function() {
                 return sjsxc.config;
             }
         });
@@ -186,8 +185,9 @@
             return;
         } 
 
-        if (sjsxc.config.enable === true)
+        if (sjsxc.config.enable === true) {
             setTimeout(sjsxc_init, 20);
+        }
     });
 
 })(jQuery, $);

@@ -24,7 +24,7 @@ ln -s /opt/sjsxc /usr/lib/GNUstep/SOGo/WebServerResources/
 ```
 
 ### Configuration
-Adjust the values for xmpp server, bosh url and xmpp domain in <code>sjsxc/js/sjsxc.js</code> and the values for webrtc in <code>sjsxc/ajax/getturncredentials.php</code>.
+Rename <code>sjsxc/js/sjsxc.config.sample.js</code> to <code>sjsxc/js/sjsxc.config.js</code> and adjust the values for xmpp server, bosh url and xmpp domain and the values for webrtc in <code>sjsxc/ajax/getturncredentials.php</code>.
 
 ### Include the files
 ```
@@ -49,6 +49,7 @@ defaults write sogod SOGoUIAdditionalJSFiles '(
     "sjsxc/js/jsxc/lib/otr/build/otr.js",
     "sjsxc/js/jsxc/jsxc.lib.js",
     "sjsxc/js/jsxc/jsxc.lib.webrtc.js",
+    "sjsxc/js/sjsxc.config.js",
     "sjsxc/js/sjsxc.js"
 )'
 ```

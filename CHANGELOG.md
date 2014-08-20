@@ -1,3 +1,8 @@
+v0.2.1 / 2014-08-20
+===
+- upgrade jsxc to v0.8.2
+- add option to sogo preferences to enable/disable chat
+
 v0.2.0 / 2014-07-02
 ===
 - upgrade jsxc to v0.8.0

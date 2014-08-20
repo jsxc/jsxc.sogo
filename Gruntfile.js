@@ -20,7 +20,7 @@ module.exports = function(grunt) {
          main: {
             files: [ {
                expand: true,
-               src: [ 'js/*.js', 'js/lib/*.js', 'css/*', 'ajax/*', 'img/*', 'LICENSE' ],
+               src: [ 'js/*.js', '!js/sjsxc.config.js', 'js/lib/*.js', 'css/*', 'ajax/*', 'img/*', 'LICENSE' ],
                dest: 'build/'
             }, {
                expand: true,
@@ -92,6 +92,6 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-contrib-compress');
 
    // Default task.
-   grunt.registerTask('default', [ 'jshint', 'clean', 'copy', 'usebanner' ]);
+   grunt.registerTask('default', [ 'jshint', 'search', 'clean', 'copy', 'usebanner', 'compress' ]);
 
 };
