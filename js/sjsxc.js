@@ -1,17 +1,5 @@
 /* global jsxc, $, configureLinksInMessage:true, SOGoResizableTableInterface, ResourcesURL, onLoginClick, onFieldKeyDown */
 
-var sjsxc = {};
-sjsxc.config = {
-    enable: true,
-    xmpp: {
-        url: '/http-bind/', // or e.g. 'http://localhost:5280/http-bind/'
-        domain: 'localhost',
-        resource: '',
-        overwrite: true,
-        onlogin: true
-    }
-};
-
 (function($, pt) {
 
     if (typeof configureLinksInMessage === "function") {
@@ -181,6 +169,12 @@ sjsxc.config = {
     };
 
     $(function(){
+
+        if (typeof sjsxc === 'undefined' || typeof sjsxc.config === 'undefined') {
+            console.error('No config for sjsxc found! Look at sjsxc.config.sample.js.');
+            return;
+        }
+
         var el = $('<div>').attr('class', 'jsxc_window').attr('id', 'jsxc_sogo_test');
         $('body').append(el);
 
