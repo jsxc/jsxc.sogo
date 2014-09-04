@@ -180,7 +180,7 @@
         var enable = JSON.parse(localStorage.getItem('sjsxc.enable'));
         sjsxc.config.enable = (typeof enable === 'undefined' || enable === null)? sjsxc.config.enable : enable;
        
-        if (window.location.pathname === '/SOGo/so/sogo1/preferences') {
+        if (window.location.pathname.match(/\/preferences$/)) {
             addOption();
             return;
         } 
