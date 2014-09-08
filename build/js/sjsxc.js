@@ -1,5 +1,5 @@
 /**
- * sjsxc v0.2.1 - 2014-08-20
+ * sjsxc v1.0.0-alpha1 - 2014-09-08
  * 
  * Copyright (c) 2014 Klaus Herberth <klaus@jsxc.org> <br>
  * Released under the MIT license
@@ -7,7 +7,7 @@
  * Please see http://jsxc.org/
  * 
  * @author Klaus Herberth <klaus@jsxc.org>
- * @version 0.2.1
+ * @version 1.0.0-alpha1
  */
 
 /* global jsxc, sjsxc, initPreferences, $, configureLinksInMessage:true, SOGoResizableTableInterface, ResourcesURL, onLoginClick, onFieldKeyDown */
@@ -97,7 +97,7 @@
         var tab = $('<div>').addClass('tab').attr('id', 'chatView');
         tab.appendTo('#preferencesTabs .tabs:first');
 
-        tab.append('<label><input type="checkbox"/> Enable chat</label>');
+        tab.append('<label><input type="checkbox"/> Enable chat</label><p>Change will take effect on next login.<br />This information is stored per browser.</p>');
         var checkbox = tab.find('input');
 
         checkbox[0].checked = sjsxc.config.enable;
@@ -172,7 +172,8 @@
     };
 
     var sjsxc_init = function() {
-        if($('#jsxc_sogo_test').css('background-color') !== ''){
+        if($('#jsxc_sogo_test').css('background-color') !== '' && $('#jsxc_sogo_test').css('position') === 'absolute'){
+            $('#jsxc_sogo_test').remove();
             sjsxc_start();
         } else {
             setTimeout(sjsxc_init, 50);
@@ -192,7 +193,7 @@
         var enable = JSON.parse(localStorage.getItem('sjsxc.enable'));
         sjsxc.config.enable = (typeof enable === 'undefined' || enable === null)? sjsxc.config.enable : enable;
        
-        if (window.location.pathname === '/SOGo/so/sogo1/preferences') {
+        if (window.location.pathname.match(/\/preferences$/)) {
             addOption();
             return;
         } 

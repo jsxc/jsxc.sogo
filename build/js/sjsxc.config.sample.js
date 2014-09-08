@@ -1,5 +1,5 @@
 /**
- * sjsxc v0.2.1 - 2014-08-20
+ * sjsxc v1.0.0-alpha1 - 2014-09-08
  * 
  * Copyright (c) 2014 Klaus Herberth <klaus@jsxc.org> <br>
  * Released under the MIT license
@@ -7,7 +7,7 @@
  * Please see http://jsxc.org/
  * 
  * @author Klaus Herberth <klaus@jsxc.org>
- * @version 0.2.1
+ * @version 1.0.0-alpha1
  */
 
 /**

@@ -94,4 +94,5 @@ module.exports = function(grunt) {
    // Default task.
    grunt.registerTask('default', [ 'jshint', 'search', 'clean', 'copy', 'usebanner', 'compress' ]);
 
+   grunt.registerTask('pre', ['jshint', 'search:console', 'clean', 'copy', 'usebanner', 'compress' ]);
 };
