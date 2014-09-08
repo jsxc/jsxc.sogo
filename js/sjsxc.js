@@ -160,7 +160,8 @@
     };
 
     var sjsxc_init = function() {
-        if($('#jsxc_sogo_test').css('background-color') !== ''){
+        if($('#jsxc_sogo_test').css('background-color') !== '' && $('#jsxc_sogo_test').css('position') === 'absolute'){
+            $('#jsxc_sogo_test').remove();
             sjsxc_start();
         } else {
             setTimeout(sjsxc_init, 50);
