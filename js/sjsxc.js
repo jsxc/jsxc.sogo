@@ -85,7 +85,7 @@
         var tab = $('<div>').addClass('tab').attr('id', 'chatView');
         tab.appendTo('#preferencesTabs .tabs:first');
 
-        tab.append('<label><input type="checkbox"/> Enable chat</label>');
+        tab.append('<label><input type="checkbox"/> Enable chat</label><p>Change will take effect on next login.<br />This information is stored per browser.</p>');
         var checkbox = tab.find('input');
 
         checkbox[0].checked = sjsxc.config.enable;
