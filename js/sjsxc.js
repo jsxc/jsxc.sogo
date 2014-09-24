@@ -110,6 +110,7 @@
         }
 
         jsxc.init({
+            app_name: 'SOGo',
             loginForm: {
                 form: '#connectForm',
             jid: '#userName',
