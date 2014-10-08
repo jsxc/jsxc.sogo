@@ -109,7 +109,7 @@
             return;
         }
 
-        jsxc.init({
+        jsxc.init($.extend({
             app_name: 'SOGo',
             loginForm: {
                 form: '#connectForm',
@@ -146,7 +146,7 @@
             loadSettings: function() {
                 return sjsxc.config;
             }
-        });
+        }, sjsxc.config.jsxc || {}));
 
         /* // Add submit link without chat functionality
            if (jsxc.el_exists($('#loginCell'))) {
