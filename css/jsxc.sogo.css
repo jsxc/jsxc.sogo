@@ -159,3 +159,7 @@ div#jsxc_roster .slimScrollDiv {
 .jsxc_right{
 	margin: 0px;
 }
+
+#jsxc_alt a {
+    cursor: pointer;
+}

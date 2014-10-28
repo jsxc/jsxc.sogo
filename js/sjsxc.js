@@ -149,16 +149,16 @@
             }
         }, sjsxc.config.jsxc || {}));
 
-        /* // Add submit link without chat functionality
-           if (jsxc.el_exists($('#loginCell'))) {
+        // Add submit link without chat functionality
+        if (jsxc.el_exists($('#loginCell'))) {
 
-           var link = $('<a/>').text('Log in without chat').click(function() {
-           jsxc.submitLoginForm();
-           });
+            var link = $('<a/>').text(jsxc.translate('%%Log_in_without_chat%%')).click(function() {
+                jsxc.submitLoginForm();
+            });
 
-           var alt = $('<p id="jsxc_alt"/>').append(link);
-           $('#loginCell').append('<br/>').append(alt);
-           }*/
+            var alt = $('<p id="jsxc_alt"/>').append(link);
+            $('#loginCell').append('<br/>').append(alt);
+        }
     };
 
     var sjsxc_init = function() {
