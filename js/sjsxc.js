@@ -1,196 +1,196 @@
-/* global jsxc, sjsxc, initPreferences, $, configureLinksInMessage:true, SOGoResizableTableInterface, ResourcesURL, onLoginClick, onFieldKeyDown */
+/* jshint undef: false */
 
 (function($, pt) {
-    
-    if (typeof configureLinksInMessage === 'function') {
-        var configureLinksInMessageOld = configureLinksInMessage;
 
-        configureLinksInMessage = function() {
-            configureLinksInMessageOld();
+   if (typeof configureLinksInMessage === 'function') {
+      var configureLinksInMessageOld = configureLinksInMessage;
 
-             jsxc.gui.detectEmail($('div#messageContent'));
-             jsxc.gui.detectUriScheme($('div#messageContent'));
-        };
-    }
+      configureLinksInMessage = function() {
+         configureLinksInMessageOld();
 
-    if (typeof loadContact === 'function') {
-        var loadContactOld = loadContact;
+         jsxc.gui.detectEmail($('div#messageContent'));
+         jsxc.gui.detectUriScheme($('div#messageContent'));
+      };
+   }
 
-        loadContact = function(idx) {
-            var available = typeof cachedContacts[Contact.currentAddressBook + "/" + idx] !== 'undefined';
-            loadContactOld(idx);
+   if (typeof loadContact === 'function') {
+      var loadContactOld = loadContact;
 
-            if(available) {
-                jsxc.gui.detectEmail($('div#contactView'));
-            }
-        }
+      loadContact = function(idx) {
+         var available = typeof cachedContacts[Contact.currentAddressBook + "/" + idx] !== 'undefined';
+         loadContactOld(idx);
 
-        var contactLoadCallbackOld = contactLoadCallback;
+         if (available) {
+            jsxc.gui.detectEmail($('div#contactView'));
+         }
+      };
 
-        contactLoadCallback = function(http) {
-            contactLoadCallbackOld(http);
+      var contactLoadCallbackOld = contactLoadCallback;
 
-            if(http.readyState === 4 && http.status === 200) {
-                jsxc.gui.detectEmail($('div#contactView'));
-            }
-        }
-    }
+      contactLoadCallback = function(http) {
+         contactLoadCallbackOld(http);
 
-    function onRosterToggle(event, state, duration) {
-        var wrapper = $('#rightPanel');
-        var control = $('#toolbar');
-        var roster_width = (state === 'shown') ? $('#jsxc_roster').outerWidth() : 0;
+         if (http.readyState === 4 && http.status === 200) {
+            jsxc.gui.detectEmail($('div#contactView'));
+         }
+      };
+   }
 
-        wrapper.animate({
-            marginRight: (roster_width) + 'px'
-        }, duration);
+   function onRosterToggle(event, state, duration) {
+      var wrapper = $('#rightPanel');
+      var control = $('#toolbar');
+      var roster_width = (state === 'shown') ? $('#jsxc_roster').outerWidth() : 0;
 
-        control.animate({
-            marginRight: (roster_width) + 'px'
-        }, duration, 'swing', function() {
-            if (typeof SOGoResizableTableInterface !== 'undefined') {
-                SOGoResizableTableInterface.resize.call(pt('messageListHeader'));
-            }
-        });
-    }
+      wrapper.animate({
+         marginRight: (roster_width) + 'px'
+      }, duration);
 
-    function onRosterReady() {
-
-        var roster_right = parseFloat($('#jsxc_roster').css('right'));
-        var mr = (204 + ($.isNumeric(roster_right) ? roster_right : 0));
-
-        $('#toolbar').css('marginRight', mr + 'px');
-        $('#rightPanel').css('marginRight', mr + 'px');
-
-        if (typeof SOGoResizableTableInterface !== 'undefined') {
+      control.animate({
+         marginRight: (roster_width) + 'px'
+      }, duration, 'swing', function() {
+         if (typeof SOGoResizableTableInterface !== 'undefined') {
             SOGoResizableTableInterface.resize.call(pt('messageListHeader'));
-        }
-    }
+         }
+      });
+   }
 
-    function lazyLoadCss(val) {
-        var files = ($.isArray(val)) ? val : [ val ];
+   function onRosterReady() {
 
-        var f = null;
-        for (f in files) {
-            if (files.hasOwnProperty(f)) {
-                $("head").append($("<link rel='stylesheet' href='/SOGo.woa/WebServerResources/sjsxc/css/" + files[f] + ".css' type='text/css' media='screen' />"));
-            }
-        }
-    }
+      var roster_right = parseFloat($('#jsxc_roster').css('right'));
+      var mr = (204 + ($.isNumeric(roster_right) ? roster_right : 0));
 
-    lazyLoadCss(['jquery-ui.min', 'jquery.colorbox', '../js/jsxc/jsxc', '../js/jsxc/jsxc.webrtc', 'jsxc.sogo' ]);
+      $('#toolbar').css('marginRight', mr + 'px');
+      $('#rightPanel').css('marginRight', mr + 'px');
 
-    function addOption() {
-        $('<li><span>Chat Options</span></li>').attr('target', 'chatView').appendTo('#preferencesTabs ul:first');
-        
-        var tab = $('<div>').addClass('tab').attr('id', 'chatView');
-        tab.appendTo('#preferencesTabs .tabs:first');
+      if (typeof SOGoResizableTableInterface !== 'undefined') {
+         SOGoResizableTableInterface.resize.call(pt('messageListHeader'));
+      }
+   }
 
-        tab.append('<label><input type="checkbox"/> Enable chat</label><p>Change will take effect on next login.<br />This information is stored per browser.</p>');
-        var checkbox = tab.find('input');
+   function lazyLoadCss(val) {
+      var files = ($.isArray(val)) ? val : [ val ];
 
-        checkbox[0].checked = sjsxc.config.enable;
-        checkbox.change(function(){
-            localStorage.setItem('sjsxc.enable', this.checked);
-        });
+      var f = null;
+      for (f in files) {
+         if (files.hasOwnProperty(f)) {
+            $("head").append($("<link rel='stylesheet' href='/SOGo.woa/WebServerResources/sjsxc/css/" + files[f] + ".css' type='text/css' media='screen' />"));
+         }
+      }
+   }
 
-        initPreferences(); 
-    }
+   lazyLoadCss([ 'jquery-ui.min', 'jquery.colorbox', '../js/jsxc/jsxc', '../js/jsxc/jsxc.webrtc', 'jsxc.sogo' ]);
 
-    var sjsxc_start = function() {
+   function addOption() {
+      $('<li><span>Chat Options</span></li>').attr('target', 'chatView').appendTo('#preferencesTabs ul:first');
 
-        if ($('#linkBanner').length === 0) {
-            return;
-        }
+      var tab = $('<div>').addClass('tab').attr('id', 'chatView');
+      tab.appendTo('#preferencesTabs .tabs:first');
 
-        $(document).on('ready.roster.jsxc', onRosterReady);
-        $(document).on('toggle.roster.jsxc', onRosterToggle);
+      tab.append('<label><input type="checkbox"/> Enable chat</label><p>Change will take effect on next login.<br />This information is stored per browser.</p>');
+      var checkbox = tab.find('input');
 
-        if (jsxc.storage.getItem("abort")) {
-            return;
-        }
+      checkbox[0].checked = sjsxc.config.enable;
+      checkbox.change(function() {
+         localStorage.setItem('sjsxc.enable', this.checked);
+      });
 
-        jsxc.init($.extend({
-            app_name: 'SOGo',
-            loginForm: {
-                form: '#connectForm',
+      initPreferences();
+   }
+
+   var sjsxc_start = function() {
+
+      if ($('#linkBanner').length === 0) {
+         return;
+      }
+
+      $(document).on('ready.roster.jsxc', onRosterReady);
+      $(document).on('toggle.roster.jsxc', onRosterToggle);
+
+      if (jsxc.storage.getItem("abort")) {
+         return;
+      }
+
+      jsxc.init($.extend({
+         app_name: 'SOGo',
+         loginForm: {
+            form: '#connectForm',
             jid: '#userName',
             pass: '#password'
-            },
-            logoutElement: $('#logoff'),
-            checkFlash: false,
-            rosterAppend: 'body',
-            root: ResourcesURL + '/sjsxc/js/jsxc',
-            turnCredentialsPath: '/SOGo.woa/WebServerResources/sjsxc/ajax/getturncredentials.php',
-            formFound: function() {
-                var submit = pt("submit");
-                submit.stopObserving("click", onLoginClick);
+         },
+         logoutElement: $('#logoff'),
+         checkFlash: false,
+         rosterAppend: 'body',
+         root: ResourcesURL + '/sjsxc/js/jsxc',
+         turnCredentialsPath: '/SOGo.woa/WebServerResources/sjsxc/ajax/getturncredentials.php',
+         formFound: function() {
+            var submit = pt("submit");
+            submit.stopObserving("click", onLoginClick);
 
-                var userName = pt("userName");
-                userName.stopObserving("keydown", onFieldKeyDown);
+            var userName = pt("userName");
+            userName.stopObserving("keydown", onFieldKeyDown);
 
-                var passw = pt("password");
-                passw.stopObserving("keydown", onFieldKeyDown);
+            var passw = pt("password");
+            passw.stopObserving("keydown", onFieldKeyDown);
 
-                $('#connectForm').submit(onLoginClick);
-                $('#submit').click(function() {
-                    $('#connectForm').submit();
-                });
-                $('#userName, #password').keypress(function(ev) {
-                    if (ev.which !== 13) {
-                        return;
-                    }
-
-                    $('#connectForm').submit();
-                });
-            },
-            loadSettings: function() {
-                return sjsxc.config;
-            }
-        }, sjsxc.config.jsxc || {}));
-
-        // Add submit link without chat functionality
-        if (jsxc.el_exists($('#loginCell'))) {
-
-            var link = $('<a/>').text(jsxc.translate('%%Log_in_without_chat%%')).click(function() {
-                jsxc.submitLoginForm();
+            $('#connectForm').submit(onLoginClick);
+            $('#submit').click(function() {
+               $('#connectForm').submit();
             });
+            $('#userName, #password').keypress(function(ev) {
+               if (ev.which !== 13) {
+                  return;
+               }
 
-            var alt = $('<p id="jsxc_alt"/>').append(link);
-            $('#loginCell').append('<br/>').append(alt);
-        }
-    };
+               $('#connectForm').submit();
+            });
+         },
+         loadSettings: function() {
+            return sjsxc.config;
+         }
+      }, sjsxc.config.jsxc || {}));
 
-    var sjsxc_init = function() {
-        if($('#jsxc_sogo_test').css('background-color') !== '' && $('#jsxc_sogo_test').css('position') === 'absolute'){
-            $('#jsxc_sogo_test').remove();
-            sjsxc_start();
-        } else {
-            setTimeout(sjsxc_init, 50);
-        }
-    };
+      // Add submit link without chat functionality
+      if (jsxc.el_exists($('#loginCell'))) {
 
-    $(function(){
+         var link = $('<a/>').text(jsxc.translate('%%Log_in_without_chat%%')).click(function() {
+            jsxc.submitLoginForm();
+         });
 
-        if (typeof sjsxc === 'undefined' || typeof sjsxc.config === 'undefined') {
-            console.error('No config for sjsxc found! Look at sjsxc.config.sample.js.');
-            return;
-        }
+         var alt = $('<p id="jsxc_alt"/>').append(link);
+         $('#loginCell').append('<br/>').append(alt);
+      }
+   };
 
-        var el = $('<div>').attr('class', 'jsxc_window').attr('id', 'jsxc_sogo_test');
-        $('body').append(el);
+   var sjsxc_init = function() {
+      if ($('#jsxc_sogo_test').css('background-color') !== '' && $('#jsxc_sogo_test').css('position') === 'absolute') {
+         $('#jsxc_sogo_test').remove();
+         sjsxc_start();
+      } else {
+         setTimeout(sjsxc_init, 50);
+      }
+   };
 
-        var enable = JSON.parse(localStorage.getItem('sjsxc.enable'));
-        sjsxc.config.enable = (typeof enable === 'undefined' || enable === null)? sjsxc.config.enable : enable;
-       
-        if (window.location.pathname.match(/\/preferences$/)) {
-            addOption();
-            return;
-        } 
+   $(function() {
 
-        if (sjsxc.config.enable === true) {
-            setTimeout(sjsxc_init, 20);
-        }
-    });
+      if (typeof sjsxc === 'undefined' || typeof sjsxc.config === 'undefined') {
+         console.error('No config for sjsxc found! Look at sjsxc.config.sample.js.');
+         return;
+      }
+
+      var el = $('<div>').attr('class', 'jsxc_window').attr('id', 'jsxc_sogo_test');
+      $('body').append(el);
+
+      var enable = JSON.parse(localStorage.getItem('sjsxc.enable'));
+      sjsxc.config.enable = (typeof enable === 'undefined' || enable === null) ? sjsxc.config.enable : enable;
+
+      if (window.location.pathname.match(/\/preferences$/)) {
+         addOption();
+         return;
+      }
+
+      if (sjsxc.config.enable === true) {
+         setTimeout(sjsxc_init, 20);
+      }
+   });
 
 })(jQuery, $);
