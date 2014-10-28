@@ -2,7 +2,7 @@
 
 (function($, pt) {
     
-    if (typeof configureLinksInMessage === "function") {
+    if (typeof configureLinksInMessage === 'function') {
         var configureLinksInMessageOld = configureLinksInMessage;
 
         configureLinksInMessage = function() {
@@ -11,6 +11,29 @@
              jsxc.gui.detectEmail($('div#messageContent'));
              jsxc.gui.detectUriScheme($('div#messageContent'));
         };
+    }
+
+    if (typeof loadContact === 'function') {
+        var loadContactOld = loadContact;
+
+        loadContact = function(idx) {
+            var available = typeof cachedContacts[Contact.currentAddressBook + "/" + idx] !== 'undefined';
+            loadContactOld(idx);
+
+            if(available) {
+                jsxc.gui.detectEmail($('div#contactView'));
+            }
+        }
+
+        var contactLoadCallbackOld = contactLoadCallback;
+
+        contactLoadCallback = function(http) {
+            contactLoadCallbackOld(http);
+
+            if(http.readyState === 4 && http.status === 200) {
+                jsxc.gui.detectEmail($('div#contactView'));
+            }
+        }
     }
 
     function onRosterToggle(event, state, duration) {
