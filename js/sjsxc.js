@@ -1,37 +1,15 @@
 /* global jsxc, sjsxc, initPreferences, $, configureLinksInMessage:true, SOGoResizableTableInterface, ResourcesURL, onLoginClick, onFieldKeyDown */
 
 (function($, pt) {
-
+    
     if (typeof configureLinksInMessage === "function") {
         var configureLinksInMessageOld = configureLinksInMessage;
 
         configureLinksInMessage = function() {
             configureLinksInMessageOld();
 
-            var spot = $("<span>X</span>").addClass("jsxc_spot");
-            var mails = $('#messageContent').find('a[href^="mailto:"]');
-
-            mails.each(function() {
-                var href = $(this).attr("href").replace(/^ *mailto:/, "").trim();
-
-                if (href !== Strophe.getBareJidFromJid(jsxc.storage.getItem("jid"))) {
-                    var cid = jsxc.jidToCid(href);
-                    var s = spot.clone().addClass("jsxc_buddy_" + cid);
-
-                    $(this).before(s);
-
-                    if (jsxc.storage.getUserItem('buddy_' + cid)) {
-                        jsxc.gui.update(cid);
-                        s.click(function(){
-                            jsxc.gui.window.open(cid);
-                        });
-                    } else {
-                        s.click(function(){
-                            jsxc.gui.showContactDialog(href);
-                        });
-                    }
-                }
-            });
+             jsxc.gui.detectEmail($('div#messageContent'));
+             jsxc.gui.detectUriScheme($('div#messageContent'));
         };
     }
 
