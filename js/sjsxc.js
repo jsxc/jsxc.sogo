@@ -7,9 +7,11 @@
 
       configureLinksInMessage = function() {
          configureLinksInMessageOld();
-
-         jsxc.gui.detectEmail($('div#messageContent'));
-         jsxc.gui.detectUriScheme($('div#messageContent'));
+         
+         if (jsxc.restoreCompleted) {
+            jsxc.gui.detectEmail($('div#messageContent'));
+            jsxc.gui.detectUriScheme($('div#messageContent'));
+         }
       };
    }
 
@@ -20,7 +22,7 @@
          var available = typeof cachedContacts[Contact.currentAddressBook + "/" + idx] !== 'undefined';
          loadContactOld(idx);
 
-         if (available) {
+         if (available && jsxc.restoreCompleted) {
             jsxc.gui.detectEmail($('div#contactView'));
          }
       };
@@ -30,7 +32,7 @@
       contactLoadCallback = function(http) {
          contactLoadCallbackOld(http);
 
-         if (http.readyState === 4 && http.status === 200) {
+         if (http.readyState === 4 && http.status === 200 && jsxc.restoreCompleted) {
             jsxc.gui.detectEmail($('div#contactView'));
          }
       };
