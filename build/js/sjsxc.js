@@ -1,5 +1,5 @@
 /*!
- * sjsxc v1.0.0-beta1 - 2014-10-29
+ * sjsxc v1.0.0 - 2014-11-06
  * 
  * Copyright (c) 2014 Klaus Herberth <klaus@jsxc.org> <br>
  * Released under the MIT license
@@ -7,7 +7,7 @@
  * Please see http://jsxc.org/
  * 
  * @author Klaus Herberth <klaus@jsxc.org>
- * @version 1.0.0-beta1
+ * @version 1.0.0
  * @license MIT
  */
 
@@ -20,9 +20,11 @@
 
       configureLinksInMessage = function() {
          configureLinksInMessageOld();
-
-         jsxc.gui.detectEmail($('div#messageContent'));
-         jsxc.gui.detectUriScheme($('div#messageContent'));
+         
+         if (jsxc.restoreCompleted) {
+            jsxc.gui.detectEmail($('div#messageContent'));
+            jsxc.gui.detectUriScheme($('div#messageContent'));
+         }
       };
    }
 
@@ -33,7 +35,7 @@
          var available = typeof cachedContacts[Contact.currentAddressBook + "/" + idx] !== 'undefined';
          loadContactOld(idx);
 
-         if (available) {
+         if (available && jsxc.restoreCompleted) {
             jsxc.gui.detectEmail($('div#contactView'));
          }
       };
@@ -43,7 +45,7 @@
       contactLoadCallback = function(http) {
          contactLoadCallbackOld(http);
 
-         if (http.readyState === 4 && http.status === 200) {
+         if (http.readyState === 4 && http.status === 200 && jsxc.restoreCompleted) {
             jsxc.gui.detectEmail($('div#contactView'));
          }
       };
