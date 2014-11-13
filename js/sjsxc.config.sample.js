@@ -6,6 +6,7 @@ var sjsxc = {};
 sjsxc.config = {
     /** enable chat by default? */
     enable: true,
+
     xmpp: {
         /** url to bosh server binding. */
         url: '/http-bind/',
@@ -21,6 +22,16 @@ sjsxc.config = {
 
         /** Should chat start on login? */
         onlogin: true
+    },
+
+    /** JSXC options. */
+    jsxc: {
+
+    },
+
+    /** Domain specific settings. */
+    'example.local': {
+       enable: false
     }
 };
 

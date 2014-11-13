@@ -179,6 +179,8 @@
          return;
       }
 
+      $.extend(true, sjsxc.config, sjsxc.config[document.domain] || {});
+
       var el = $('<div>').attr('class', 'jsxc_window').attr('id', 'jsxc_sogo_test');
       $('body').append(el);
 
