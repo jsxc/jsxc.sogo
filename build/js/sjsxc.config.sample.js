@@ -1,13 +1,13 @@
 /*!
- * sjsxc v1.0.0 - 2014-11-06
+ * sjsxc v2.0.0 - 2015-05-08
  * 
- * Copyright (c) 2014 Klaus Herberth <klaus@jsxc.org> <br>
+ * Copyright (c) 2015 Klaus Herberth <klaus@jsxc.org> <br>
  * Released under the MIT license
  * 
  * Please see http://jsxc.org/
  * 
  * @author Klaus Herberth <klaus@jsxc.org>
- * @version 1.0.0
+ * @version 2.0.0
  * @license MIT
  */
 
@@ -19,6 +19,7 @@ var sjsxc = {};
 sjsxc.config = {
     /** enable chat by default? */
     enable: true,
+
     xmpp: {
         /** url to bosh server binding. */
         url: '/http-bind/',
@@ -34,6 +35,16 @@ sjsxc.config = {
 
         /** Should chat start on login? */
         onlogin: true
+    },
+
+    /** JSXC options. */
+    jsxc: {
+
+    },
+
+    /** Domain specific settings. */
+    'example.local': {
+       enable: false
     }
 };
 

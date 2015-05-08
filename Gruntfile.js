@@ -17,7 +17,7 @@ module.exports = function(grunt) {
          files: [ 'js/sjsxc.js' ]
       },
       copy: {
-         main: {
+         build: {
             files: [ {
                expand: true,
                src: [ 'js/*.js', '!js/sjsxc.config.js', 'js/lib/*.js', 'css/*', 'ajax/*', 'img/*', 'LICENSE' ],
@@ -28,9 +28,20 @@ module.exports = function(grunt) {
                src: [ '**' ],
                dest: 'build/js/jsxc/'
             } ]
+         },
+         css: {
+            files: [ {
+               expand: true,
+               cwd: 'js/jsxc/lib/',
+               src: ['*.css'],
+               dest: 'css/'
+            } ] 
          }
       },
-      clean: [ 'build/' ],
+      clean: {
+        build: [ 'build/' ],
+        css: ['css/']
+      },
       usebanner: {
          dist: {
             options: {
@@ -71,7 +82,7 @@ module.exports = function(grunt) {
       compress: {
          main: {
             options: {
-               archive: "sjsxc-<%= app.version %>.zip"
+               archive: "archives/sjsxc-<%= app.version %>.zip"
             },
             files: [ {
                src: [ '**' ],
@@ -80,6 +91,37 @@ module.exports = function(grunt) {
                cwd: 'build/'
             } ]
          }
+      },
+      autoprefixer: {
+         no_dest: {
+             src: 'css/*.css'
+         }
+      },
+      sass: {
+         options: {
+            imagePath: '../js/jsxc/img'
+         },
+         dist: {
+             files: {
+                'css/jsxc.sogo.css': 'scss/jsxc.sogo.scss'
+             }
+         }
+      },
+      dataUri: {
+          dist: {
+            src: 'css/jsxc.sogo.css',
+            dest: 'build/css/',
+            options: {
+              target: ['img/*.*', 'js/jsxc/img/*.*', 'js/jsxc/img/**/*.*'],
+              maxBytes: 2048
+            }
+          }
+      },
+      watch: {
+            css: {
+                files: ['js/jsxc/scss/*', 'scss/*'],
+                tasks: ['sass', 'autoprefixer']
+            }
       }
    });
 
@@ -90,9 +132,20 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-banner');
    grunt.loadNpmTasks('grunt-search');
    grunt.loadNpmTasks('grunt-contrib-compress');
+   grunt.loadNpmTasks('grunt-sass');
+   grunt.loadNpmTasks('grunt-autoprefixer');
+   grunt.loadNpmTasks('grunt-data-uri');
+   grunt.loadNpmTasks('grunt-contrib-watch');
 
    // Default task.
-   grunt.registerTask('default', [ 'jshint', 'search', 'clean', 'copy', 'usebanner', 'compress' ]);
+   grunt.registerTask('default', [ 'build', 'watch' ]);
 
-   grunt.registerTask('pre', ['jshint', 'search:console', 'clean', 'copy', 'usebanner', 'compress' ]);
+   grunt.registerTask('build', ['jshint', 'clean:css', 'copy:css', 'sass', 'autoprefixer']);
+   
+   grunt.registerTask('build:prerelease', ['search:console', 'clean:build', 'build', 'copy:build', 'dataUri', 'usebanner', 'compress']);
+   
+   grunt.registerTask('build:release', ['search:changelog', 'build:prerelease']);
+   
+   // Create alpha/beta build @deprecated
+   grunt.registerTask('pre', [ 'build:prerelease' ]);
 };

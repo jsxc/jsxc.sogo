@@ -1,13 +1,13 @@
 /*!
- * sjsxc v1.0.0 - 2014-11-06
+ * sjsxc v2.0.0 - 2015-05-08
  * 
- * Copyright (c) 2014 Klaus Herberth <klaus@jsxc.org> <br>
+ * Copyright (c) 2015 Klaus Herberth <klaus@jsxc.org> <br>
  * Released under the MIT license
  * 
  * Please see http://jsxc.org/
  * 
  * @author Klaus Herberth <klaus@jsxc.org>
- * @version 1.0.0
+ * @version 2.0.0
  * @license MIT
  */
 
@@ -93,7 +93,7 @@
       }
    }
 
-   lazyLoadCss([ 'jquery-ui.min', 'jquery.colorbox', '../js/jsxc/jsxc', '../js/jsxc/jsxc.webrtc', 'jsxc.sogo' ]);
+   lazyLoadCss([ 'jquery-ui.min', 'jquery.colorbox', 'jsxc.sogo' ]);
 
    function addOption() {
       $('<li><span>Chat Options</span></li>').attr('target', 'chatView').appendTo('#preferencesTabs ul:first');
@@ -161,13 +161,16 @@
          },
          loadSettings: function() {
             return sjsxc.config;
+         },
+         displayRosterMinimized: function() {
+             return $('#logoff').length > 0;
          }
       }, sjsxc.config.jsxc || {}));
 
       // Add submit link without chat functionality
       if (jsxc.el_exists($('#loginCell'))) {
 
-         var link = $('<a/>').text(jsxc.translate('%%Log_in_without_chat%%')).click(function() {
+         var link = $('<a/>').text($.t('Log_in_without_chat')).click(function() {
             jsxc.submitLoginForm();
          });
 
@@ -191,6 +194,8 @@
          console.error('No config for sjsxc found! Look at sjsxc.config.sample.js.');
          return;
       }
+
+      $.extend(true, sjsxc.config, sjsxc.config[document.domain] || {});
 
       var el = $('<div>').attr('class', 'jsxc_window').attr('id', 'jsxc_sogo_test');
       $('body').append(el);

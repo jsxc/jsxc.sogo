@@ -80,7 +80,7 @@
       }
    }
 
-   lazyLoadCss([ 'jquery-ui.min', 'jquery.colorbox', '../js/jsxc/jsxc', '../js/jsxc/jsxc.webrtc', 'jsxc.sogo' ]);
+   lazyLoadCss([ 'jquery-ui.min', 'jquery.colorbox', 'jsxc.sogo' ]);
 
    function addOption() {
       $('<li><span>Chat Options</span></li>').attr('target', 'chatView').appendTo('#preferencesTabs ul:first');
@@ -148,13 +148,16 @@
          },
          loadSettings: function() {
             return sjsxc.config;
+         },
+         displayRosterMinimized: function() {
+             return $('#logoff').length > 0;
          }
       }, sjsxc.config.jsxc || {}));
 
       // Add submit link without chat functionality
       if (jsxc.el_exists($('#loginCell'))) {
 
-         var link = $('<a/>').text(jsxc.translate('%%Log_in_without_chat%%')).click(function() {
+         var link = $('<a/>').text($.t('Log_in_without_chat')).click(function() {
             jsxc.submitLoginForm();
          });
 
