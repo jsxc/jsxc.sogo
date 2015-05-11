@@ -96,7 +96,9 @@
          localStorage.setItem('sjsxc.enable', this.checked);
       });
 
-      initPreferences();
+      var tabsContainer = pt("preferencesTabs");
+      var controller = new SOGoTabsController();
+      controller.attachToTabsContainer(tabsContainer);
    }
 
    var sjsxc_start = function() {
