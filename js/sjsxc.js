@@ -1,4 +1,4 @@
-/* jshint undef: false */
+/* jshint undef: false, newcap: false */
 
 (function($, pt) {
 
@@ -109,6 +109,26 @@
 
       $(document).on('ready.roster.jsxc', onRosterReady);
       $(document).on('toggle.roster.jsxc', onRosterToggle);
+      $(document).on('connecting.jsxc', function() {
+            var form = $(jsxc.options.loginForm.form);
+
+            if (typeof startAnimation === 'function' && form.length > 0) {
+                form.find('input, select, #submit').prop('disabled', true);
+                startAnimation(pt('animation'));
+            }
+      });
+      $(document).on('authfail.jsxc', function() {
+          var form = $(jsxc.options.loginForm.form);
+
+          if (typeof SetLogMessage === 'function' && form.length > 0) { 
+              $(jsxc.options.loginForm.form).find('input, select, #submit').prop('disabled', false);
+              $('#progressIndicator').remove();
+              SetLogMessage('errorMessage', _('Wrong username or password.'));
+          }
+      });
+      $(document).on('connected.jsxc', function() {
+              $(jsxc.options.loginForm.form).find('input, select, #submit').prop('disabled', false);
+      });
 
       if (jsxc.storage.getItem("abort")) {
          return;
@@ -119,7 +139,9 @@
          loginForm: {
             form: '#connectForm',
             jid: '#userName',
-            pass: '#password'
+            pass: '#password',
+            onConnecting: 'quiet',
+            onAuthFail: 'quiet'
          },
          logoutElement: $('#logoff'),
          checkFlash: false,
@@ -136,9 +158,15 @@
             var passw = pt("password");
             passw.stopObserving("keydown", onFieldKeyDown);
 
-            $('#connectForm').submit(onLoginClick);
+            $('#connectForm').submit(function(ev){
+                onLoginClick(ev);
+
+                return false;
+            });
             $('#submit').click(function() {
-               $('#connectForm').submit();
+                if(!$(this).prop('disabled')) {
+                    $('#connectForm').submit();
+                }
             });
             $('#userName, #password').keypress(function(ev) {
                if (ev.which !== 13) {
