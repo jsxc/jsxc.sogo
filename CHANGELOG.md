@@ -1,3 +1,9 @@
+v2.0.1 / 2015-05-23
+===
+- upgrade jsxc to v2.0.1
+- fix preferences
+- fix bad password handling
+
 v2.0.0 / 2015-05-08
 ===
 - upgrade jsxc to v2.0.0
