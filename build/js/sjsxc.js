@@ -1,5 +1,5 @@
 /*!
- * sjsxc v2.0.1 - 2015-05-23
+ * sjsxc v2.1.0 - 2015-07-31
  * 
  * Copyright (c) 2015 Klaus Herberth <klaus@jsxc.org> <br>
  * Released under the MIT license
@@ -7,7 +7,7 @@
  * Please see http://jsxc.org/
  * 
  * @author Klaus Herberth <klaus@jsxc.org>
- * @version 2.0.1
+ * @version 2.1.0
  * @license MIT
  */
 
@@ -154,13 +154,16 @@
             jid: '#userName',
             pass: '#password',
             onConnecting: 'quiet',
-            onAuthFail: 'quiet'
+            onAuthFail: 'quiet',
+            attachIfFound: false
          },
          logoutElement: $('#logoff'),
          checkFlash: false,
          rosterAppend: 'body',
          root: ResourcesURL + '/sjsxc/js/jsxc',
-         turnCredentialsPath: '/SOGo.woa/WebServerResources/sjsxc/ajax/getturncredentials.php',
+         RTCPeerConfig: {
+            url: '/SOGo.woa/WebServerResources/sjsxc/ajax/getturncredentials.php'
+         },
          formFound: function() {
             var submit = pt("submit");
             submit.stopObserving("click", onLoginClick);
