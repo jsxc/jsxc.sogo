@@ -141,13 +141,16 @@
             jid: '#userName',
             pass: '#password',
             onConnecting: 'quiet',
-            onAuthFail: 'quiet'
+            onAuthFail: 'quiet',
+            attachIfFound: false
          },
          logoutElement: $('#logoff'),
          checkFlash: false,
          rosterAppend: 'body',
          root: ResourcesURL + '/sjsxc/js/jsxc',
-         turnCredentialsPath: '/SOGo.woa/WebServerResources/sjsxc/ajax/getturncredentials.php',
+         RTCPeerConfig: {
+            url: '/SOGo.woa/WebServerResources/sjsxc/ajax/getturncredentials.php'
+         },
          formFound: function() {
             var submit = pt("submit");
             submit.stopObserving("click", onLoginClick);

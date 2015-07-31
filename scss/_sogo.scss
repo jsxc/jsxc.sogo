@@ -26,18 +26,10 @@ div#jsxc_roster .slimScrollDiv {
    left: 0px; 
 }
 
-#jsxc_dialog .button{
-	background-color: rgba(250, 250, 250, .9);
-	color: #333;
-	font-weight:bold;
-	border: 1px solid rgba(190,190,190,.9);
-	border-radius:3px;
-	height: 30px;
-	margin:.3em;
-	padding: .4em;
-	float: none;
-	background-image:none;
-	display: inline;
+#jsxc_dialog {
+    label {
+        margin-left: 0;
+    }
 }
 
 .jsxc_right{
