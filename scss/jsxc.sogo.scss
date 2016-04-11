@@ -3,14 +3,15 @@
 @import 'js/jsxc/scss/dep';
 
 //fonts
-$font_sans: Arial, sans-serif;
-$font_serif: serif;
+$font_sans: 'Fira sans', 'Helvetica Neue', sans-serif;
+$font_serif: 'Fira sans', 'Helvetica Neue', sans-serif;
 
 @import 'js/jsxc/scss/modules',
         'js/jsxc/scss/buddylist',
         'js/jsxc/scss/state',
         'js/jsxc/scss/emoticons',
         'js/jsxc/scss/roster',
+        'js/jsxc/scss/window',
         'js/jsxc/scss/muc';
 
 @import 'js/jsxc/scss/jsxc';

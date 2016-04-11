@@ -38,35 +38,50 @@
       };
    }
 
-   function onRosterToggle(event, state, duration) {
-      var wrapper = $('#rightPanel');
-      var control = $('#toolbar');
-      var roster_width = (state === 'shown') ? $('#jsxc_roster').outerWidth() : 0;
-
-      wrapper.animate({
-         marginRight: (roster_width) + 'px'
-      }, duration);
-
-      control.animate({
-         marginRight: (roster_width) + 'px'
-      }, duration, 'swing', function() {
-         if (typeof SOGoResizableTableInterface !== 'undefined') {
-            SOGoResizableTableInterface.resize.call(pt('messageListHeader'));
+   function onRosterToggle(event, state) {      
+         if ($(window).width() < 768) {
+            // Do not resize elements on extra small devices (bootstrap definition)
+            return;
          }
-      });
+      
+        if (state === 'shown') {
+           $('body').addClass('jsxc_rosterVisible');
+        } else {
+           $('body').removeClass('jsxc_rosterVisible');
+        }
    }
 
-   function onRosterReady() {
-
-      var roster_right = parseFloat($('#jsxc_roster').css('right'));
-      var mr = (204 + ($.isNumeric(roster_right) ? roster_right : 0));
-
-      $('#toolbar').css('marginRight', mr + 'px');
-      $('#rightPanel').css('marginRight', mr + 'px');
-
-      if (typeof SOGoResizableTableInterface !== 'undefined') {
-         SOGoResizableTableInterface.resize.call(pt('messageListHeader'));
+   function onRosterReady() {      
+      if ($(window).width() < 768) {
+          // Do not resize elements on extra small devices (bootstrap definition)
+          return;
       }
+
+      injectChatIcon();
+
+        if ($('#jsxc_roster').hasClass('jsxc_state_hidden')) {
+           $('body').removeClass('jsxc_rosterVisible');
+        } else {
+           $('body').addClass('jsxc_rosterVisible');
+        }
+        
+        function injectChatIcon() {
+          var settingsButton = $('a[aria-label="settings_applications"]');
+          
+          if (settingsButton.length === 0) {
+             setTimeout(injectChatIcon, 500);
+             return;
+          }
+          
+          var a = $('<a>');
+          a.addClass('md-icon-button md-button md-ink-ripple');
+          a.attr('id', 'jsxc_chatIcon');
+          a.click(function(){
+             jsxc.gui.roster.toggle();
+          });
+          
+          settingsButton.after(a);
+       }
    }
 
    function lazyLoadCss(val) {
@@ -80,7 +95,7 @@
       }
    }
 
-   lazyLoadCss([ 'jquery-ui.min', 'jquery.colorbox', 'jsxc.sogo' ]);
+   lazyLoadCss([ 'jquery-ui.min', 'jsxc.sogo' ]);
 
    function addOption() {
       $('<li><span>Chat Options</span></li>').attr('target', 'chatView').appendTo('#preferencesTabs ul:first');
@@ -102,10 +117,6 @@
    }
 
    var sjsxc_start = function() {
-
-      if ($('#linkBanner').length === 0) {
-         return;
-      }
 
       $(document).on('ready.roster.jsxc', onRosterReady);
       $(document).on('toggle.roster.jsxc', onRosterToggle);
@@ -137,9 +148,9 @@
       jsxc.init($.extend({
          app_name: 'SOGo',
          loginForm: {
-            form: '#connectForm',
-            jid: '#userName',
-            pass: '#password',
+            form: '#login [name="loginForm"]',
+            jid: '#login [ng-model="app.creds.username"]',
+            pass: '#login [ng-model="app.creds.password"]',
             onConnecting: 'quiet',
             onAuthFail: 'quiet',
             attachIfFound: false
@@ -151,39 +162,11 @@
          RTCPeerConfig: {
             url: '/SOGo.woa/WebServerResources/sjsxc/ajax/getturncredentials.php'
          },
-         formFound: function() {
-            var submit = pt("submit");
-            submit.stopObserving("click", onLoginClick);
-
-            var userName = pt("userName");
-            userName.stopObserving("keydown", onFieldKeyDown);
-
-            var passw = pt("password");
-            passw.stopObserving("keydown", onFieldKeyDown);
-
-            $('#connectForm').submit(function(ev){
-                onLoginClick(ev);
-
-                return false;
-            });
-            $('#submit').click(function() {
-                if(!$(this).prop('disabled')) {
-                    $('#connectForm').submit();
-                }
-            });
-            $('#userName, #password').keypress(function(ev) {
-               if (ev.which !== 13) {
-                  return;
-               }
-
-               $('#connectForm').submit();
-            });
-         },
          loadSettings: function() {
             return sjsxc.config;
          },
          displayRosterMinimized: function() {
-             return $('#logoff').length > 0;
+             return true; //$('[ng-href="../logoff"]').length > 0;
          }
       }, sjsxc.config.jsxc || {}));
 

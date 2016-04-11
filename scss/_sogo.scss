@@ -1,12 +1,43 @@
+div#jsxc_windowList, div#jsxc_dialog, div#jsxc_roster {
+	font-size: 0.9em;
+}
+.jsxc_windowItem {
+	a {
+		text-decoration: none;
+	}
+}
+.jsxc_rosteritem {
+	a {
+		text-decoration: none;
+	}
+}
+.jsxc_window .jsxc_emoticons ul {
+	box-sizing: content-box;
+}
 div#jsxc_roster {
-	top: 30px;
-	box-shadow: -4px 0px #E6E7E6;
-    .slimScrollDiv {
- 	    left: -5px;
-    }
+	top: 64px;
+}
+div#jsxc_windowList, div#jsxc_windowListSB {
+	z-index: 65;
+}
+[ui-view="mailbox"] > .md-flex.ng-scope.layout-row {
+	margin-right: 0;
+	transition: margin-right 0.5s;
+}
+.jsxc_rosterVisible {
+	[ui-view="mailbox"] > .md-flex.ng-scope.layout-row {
+		margin-right: 200px;
+	}
+}
+#jsxc_chatIcon {
+	background-size: 22px 22px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url('../img/chat-icon-white.svg');
+	opacity: 0.870588;
 }
 
-ul#jsxc_buddylist {
+/*ul#jsxc_buddylist {
     li {
         width: auto;
     }
@@ -38,4 +69,4 @@ div#jsxc_roster .slimScrollDiv {
 
 #jsxc_alt a {
     cursor: pointer;
-}
+}*/
