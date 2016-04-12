@@ -1,4 +1,4 @@
-/* jshint undef: false, newcap: false */
+/* jshint undef: false, newcap: false, latedef:nofunc */
 
 (function($, pt) {
 
@@ -155,7 +155,7 @@
             onAuthFail: 'quiet',
             attachIfFound: false
          },
-         logoutElement: $('#logoff'),
+         logoutElement: '[href="../logoff"]',
          checkFlash: false,
          rosterAppend: 'body',
          root: ResourcesURL + '/sjsxc/js/jsxc',
@@ -167,6 +167,19 @@
          },
          displayRosterMinimized: function() {
              return true; //$('[ng-href="../logoff"]').length > 0;
+         },
+         formFound: function() {
+            $('#login button[type="submit"]:first').attr('id', 'submit');
+            $('#login button[type="submit"]:first').click(function(ev) {
+               var conn = jsxc.xmpp.conn;
+
+               if (!(conn && conn.connected && conn.authenticated)) {
+                  ev.stopPropagation();
+                  ev.preventDefault();
+
+                  $(jsxc.options.loginForm.form).submit();
+               }
+            });
          }
       }, sjsxc.config.jsxc || {}));
 
