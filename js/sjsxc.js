@@ -153,11 +153,9 @@
             pass: '#login [ng-model="app.creds.password"]',
             onConnecting: 'quiet',
             onAuthFail: 'quiet',
-            attachIfFound: false
+            ifFound: 'force'
          },
          logoutElement: '[href="../logoff"]',
-         checkFlash: false,
-         rosterAppend: 'body',
          root: ResourcesURL + '/sjsxc/js/jsxc',
          RTCPeerConfig: {
             url: '/SOGo.woa/WebServerResources/sjsxc/ajax/getturncredentials.php'
@@ -184,15 +182,15 @@
       }, sjsxc.config.jsxc || {}));
 
       // Add submit link without chat functionality
-      if (jsxc.el_exists($('#loginCell'))) {
+      /*if (jsxc.el_exists($('#login'))) {
 
          var link = $('<a/>').text($.t('Log_in_without_chat')).click(function() {
             jsxc.submitLoginForm();
          });
 
          var alt = $('<p id="jsxc_alt"/>').append(link);
-         $('#loginCell').append('<br/>').append(alt);
-      }
+         $('#submit').before(alt);
+      }*/
    };
 
    var sjsxc_init = function() {

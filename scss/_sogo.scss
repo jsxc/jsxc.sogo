@@ -36,6 +36,14 @@ div#jsxc_windowList, div#jsxc_windowListSB {
 	background-image: url('../img/chat-icon-white.svg');
 	opacity: 0.870588;
 }
+#jsxc_alt a {
+    cursor: pointer;
+	 opacity: 0.7;
+	 &:hover {
+		 text-decoration: underline;
+		 opacity: 1;
+	 }
+}
 
 /*ul#jsxc_buddylist {
     li {
