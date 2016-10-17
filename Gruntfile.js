@@ -125,7 +125,7 @@ module.exports = function(grunt) {
             dest: 'build/css/',
             options: {
               target: ['img/*.*', 'js/jsxc/img/*.*', 'js/jsxc/img/**/*.*'],
-              maxBytes: 2048
+              maxBytes: 1 //2048
             }
           }
       },

@@ -1,7 +1,7 @@
 {
   "name": "sjsxc",
-  "version": "3.0.1-nightly.20160615",
-  "description": "Real-time chat app for SOGo",
+  "version": "3.0.1-beta2",
+  "description": "Real-time chat app for SOGo v3",
   "homepage": "http://jsxc.org/",
   "bugs": "https://github.com/sualko/jsxc/issues",
   "license": "MIT",
