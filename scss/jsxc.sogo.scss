@@ -11,9 +11,10 @@ $font_serif: serif;
         'js/jsxc/scss/state',
         'js/jsxc/scss/emoticons',
         'js/jsxc/scss/roster',
+        'js/jsxc/scss/window',
         'js/jsxc/scss/muc';
 
 @import 'js/jsxc/scss/jsxc';
-@import 'js/jsxc/scss/jsxc.webrtc';
+@import 'js/jsxc/scss/webrtc';
 
 @import 'sogo';

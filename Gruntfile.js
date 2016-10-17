@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                cwd: 'js/jsxc/lib/',
                src: ['*.css'],
                dest: 'css/'
-            } ] 
+            } ]
          }
       },
       clean: {
@@ -52,6 +52,18 @@ module.exports = function(grunt) {
                src: [ 'build/js/*.js' ]
             }
          }
+      },
+      replace: {
+        imageUrl: {
+           src: ['css/*.css'],
+           overwrite: true,
+           replacements: [
+              {
+                 from: /image-url\(["'](.+)["']\)/g,
+                 to: 'url(\'../js/jsxc/img/$1\')'
+              }
+           ]
+        }
       },
       search: {
          console: {
@@ -113,14 +125,14 @@ module.exports = function(grunt) {
             dest: 'build/css/',
             options: {
               target: ['img/*.*', 'js/jsxc/img/*.*', 'js/jsxc/img/**/*.*'],
-              maxBytes: 2048
+              maxBytes: 1 //2048
             }
           }
       },
       watch: {
             css: {
                 files: ['js/jsxc/scss/*', 'scss/*'],
-                tasks: ['sass', 'autoprefixer']
+                tasks: ['sass', 'autoprefixer', 'replace:imageUrl']
             }
       }
    });
@@ -136,16 +148,17 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-autoprefixer');
    grunt.loadNpmTasks('grunt-data-uri');
    grunt.loadNpmTasks('grunt-contrib-watch');
+   grunt.loadNpmTasks('grunt-text-replace');
 
    // Default task.
    grunt.registerTask('default', [ 'build', 'watch' ]);
 
-   grunt.registerTask('build', ['jshint', 'clean:css', 'copy:css', 'sass', 'autoprefixer']);
-   
+   grunt.registerTask('build', ['jshint', 'clean:css', 'copy:css', 'sass', 'replace:imageUrl', 'autoprefixer']);
+
    grunt.registerTask('build:prerelease', ['search:console', 'clean:build', 'build', 'copy:build', 'dataUri', 'usebanner', 'compress']);
-   
+
    grunt.registerTask('build:release', ['search:changelog', 'build:prerelease']);
-   
+
    // Create alpha/beta build @deprecated
    grunt.registerTask('pre', [ 'build:prerelease' ]);
 };

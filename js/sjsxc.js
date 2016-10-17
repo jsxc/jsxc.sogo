@@ -7,7 +7,7 @@
 
       configureLinksInMessage = function() {
          configureLinksInMessageOld();
-         
+
          if (jsxc.restoreCompleted) {
             jsxc.gui.detectEmail($('div#messageContent'));
             jsxc.gui.detectUriScheme($('div#messageContent'));
@@ -80,7 +80,7 @@
       }
    }
 
-   lazyLoadCss([ 'jquery-ui.min', 'jquery.colorbox', 'jsxc.sogo' ]);
+   lazyLoadCss([ 'jquery-ui.min', 'jsxc.sogo' ]);
 
    function addOption() {
       $('<li><span>Chat Options</span></li>').attr('target', 'chatView').appendTo('#preferencesTabs ul:first');
@@ -120,7 +120,7 @@
       $(document).on('authfail.jsxc', function() {
           var form = $(jsxc.options.loginForm.form);
 
-          if (typeof SetLogMessage === 'function' && form.length > 0) { 
+          if (typeof SetLogMessage === 'function' && form.length > 0) {
               $(jsxc.options.loginForm.form).find('input, select, #submit').prop('disabled', false);
               $('#progressIndicator').remove();
               SetLogMessage('errorMessage', _('Wrong username or password.'));
@@ -145,7 +145,6 @@
             attachIfFound: false
          },
          logoutElement: $('#logoff'),
-         checkFlash: false,
          rosterAppend: 'body',
          root: ResourcesURL + '/sjsxc/js/jsxc',
          RTCPeerConfig: {
@@ -200,7 +199,7 @@
    };
 
    var sjsxc_init = function() {
-      if ($('#jsxc_sogo_test').css('background-color') !== '' && $('#jsxc_sogo_test').css('position') === 'absolute') {
+      if ($('#jsxc_sogo_test').css('text-align') === 'right') {
          $('#jsxc_sogo_test').remove();
          sjsxc_start();
       } else {
@@ -217,7 +216,7 @@
 
       $.extend(true, sjsxc.config, sjsxc.config[document.domain] || {});
 
-      var el = $('<div>').attr('class', 'jsxc_window').attr('id', 'jsxc_sogo_test');
+      var el = $('<div>').attr('class', 'jsxc_right').attr('id', 'jsxc_sogo_test');
       $('body').append(el);
 
       var enable = JSON.parse(localStorage.getItem('sjsxc.enable'));
