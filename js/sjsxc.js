@@ -7,7 +7,7 @@
 
       configureLinksInMessage = function() {
          configureLinksInMessageOld();
-         
+
          if (jsxc.restoreCompleted) {
             jsxc.gui.detectEmail($('div#messageContent'));
             jsxc.gui.detectUriScheme($('div#messageContent'));
@@ -38,12 +38,12 @@
       };
    }
 
-   function onRosterToggle(event, state) {      
+   function onRosterToggle(event, state) {
          if ($(window).width() < 768) {
             // Do not resize elements on extra small devices (bootstrap definition)
             return;
          }
-      
+
         if (state === 'shown') {
            $('body').addClass('jsxc_rosterVisible');
         } else {
@@ -51,7 +51,7 @@
         }
    }
 
-   function onRosterReady() {      
+   function onRosterReady() {
       if ($(window).width() < 768) {
           // Do not resize elements on extra small devices (bootstrap definition)
           return;
@@ -64,22 +64,22 @@
         } else {
            $('body').addClass('jsxc_rosterVisible');
         }
-        
+
         function injectChatIcon() {
           var settingsButton = $('a[aria-label="settings_applications"]');
-          
+
           if (settingsButton.length === 0) {
              setTimeout(injectChatIcon, 500);
              return;
           }
-          
+
           var a = $('<a>');
           a.addClass('md-icon-button md-button md-ink-ripple');
           a.attr('id', 'jsxc_chatIcon');
           a.click(function(){
              jsxc.gui.roster.toggle();
           });
-          
+
           settingsButton.after(a);
        }
    }
@@ -131,7 +131,7 @@
       $(document).on('authfail.jsxc', function() {
           var form = $(jsxc.options.loginForm.form);
 
-          if (typeof SetLogMessage === 'function' && form.length > 0) { 
+          if (typeof SetLogMessage === 'function' && form.length > 0) {
               $(jsxc.options.loginForm.form).find('input, select, #submit').prop('disabled', false);
               $('#progressIndicator').remove();
               SetLogMessage('errorMessage', _('Wrong username or password.'));
@@ -146,7 +146,7 @@
       }
 
       jsxc.init($.extend({
-         app_name: 'SOGo',
+         app_name: 'SOGo v3',
          loginForm: {
             form: '#login [name="loginForm"]',
             jid: '#login [ng-model="app.creds.username"]',
