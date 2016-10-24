@@ -66,7 +66,7 @@
         }
 
         function injectChatIcon() {
-          var settingsButton = $('a[aria-label="settings_applications"]');
+          var settingsButton = $('md-toolbar a[ng-href="../Mail"]');
 
           if (settingsButton.length === 0) {
              setTimeout(injectChatIcon, 500);
