@@ -17,16 +17,44 @@ div#jsxc_windowList, div#jsxc_dialog, div#jsxc_roster {
 div#jsxc_roster {
 	top: 64px;
 }
+[ng-app="SOGo.PreferencesUI"] {
+	.md-button.md-fab.md-fab-bottom-right {
+		transition: right 0.5s;
+	}
+	&.jsxc_rosterVisible {
+		.md-button.md-fab.md-fab-bottom-right {
+			right: 220px;
+		}
+	}
+	div#jsxc_roster {
+		top: 128px;
+	}
+}
 div#jsxc_windowList, div#jsxc_windowListSB {
 	z-index: 65;
 }
-[ui-view="mailbox"] > .md-flex.ng-scope.layout-row {
-	margin-right: 0;
-	transition: margin-right 0.5s;
+[ui-view="mailbox"], [ui-view="addressbook"], [ui-view="calendars"] {
+	.toolbar-main + .layout-row {
+		margin-right: 0;
+		transition: margin-right 0.5s;
+	}
+}
+[ui-view="preferences"] {
+	md-toolbar + md-content {
+		margin-right: 0;
+		transition: margin-right 0.5s;
+	}
 }
 .jsxc_rosterVisible {
-	[ui-view="mailbox"] > .md-flex.ng-scope.layout-row {
-		margin-right: 200px;
+	[ui-view="mailbox"], [ui-view="addressbook"], [ui-view="calendars"] {
+		.toolbar-main + .layout-row {
+			margin-right: 200px;
+		}
+	}
+	[ui-view="preferences"] section[layout-fill="layout-fill"]{
+		md-toolbar + md-content {
+			margin-right: 200px;
+		}
 	}
 }
 #jsxc_chatIcon {
@@ -62,7 +90,7 @@ div#jsxc_windowList, div#jsxc_windowListSB {
 }
 
 div#jsxc_roster .slimScrollDiv {
-   left: 0px; 
+   left: 0px;
 }
 
 #jsxc_dialog {
