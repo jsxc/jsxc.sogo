@@ -1,3 +1,7 @@
+v3.0.1 / 2016-10-28
+===
+- upgrade jsxc to v3.0.1
+
 v2.1.0 / 2015-07-31
 ===
 - upgrade jsxc to v2.1.0
