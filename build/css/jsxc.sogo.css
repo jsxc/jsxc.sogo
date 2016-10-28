@@ -4432,15 +4432,33 @@ div#jsxc_windowList, div#jsxc_dialog, div#jsxc_roster {
 div#jsxc_roster {
   top: 64px; }
 
+[ng-app="SOGo.PreferencesUI"] .md-button.md-fab.md-fab-bottom-right {
+  -webkit-transition: right 0.5s;
+          transition: right 0.5s; }
+
+[ng-app="SOGo.PreferencesUI"].jsxc_rosterVisible .md-button.md-fab.md-fab-bottom-right {
+  right: 220px; }
+
+[ng-app="SOGo.PreferencesUI"] div#jsxc_roster {
+  top: 128px; }
+
 div#jsxc_windowList, div#jsxc_windowListSB {
   z-index: 65; }
 
-[ui-view="mailbox"] > .md-flex.ng-scope.layout-row {
+[ui-view="mailbox"] .toolbar-main + .layout-row, [ui-view="addressbook"] .toolbar-main + .layout-row, [ui-view="calendars"] .toolbar-main + .layout-row {
   margin-right: 0;
   -webkit-transition: margin-right 0.5s;
           transition: margin-right 0.5s; }
 
-.jsxc_rosterVisible [ui-view="mailbox"] > .md-flex.ng-scope.layout-row {
+[ui-view="preferences"] md-toolbar + md-content {
+  margin-right: 0;
+  -webkit-transition: margin-right 0.5s;
+          transition: margin-right 0.5s; }
+
+.jsxc_rosterVisible [ui-view="mailbox"] .toolbar-main + .layout-row, .jsxc_rosterVisible [ui-view="addressbook"] .toolbar-main + .layout-row, .jsxc_rosterVisible [ui-view="calendars"] .toolbar-main + .layout-row {
+  margin-right: 200px; }
+
+.jsxc_rosterVisible [ui-view="preferences"] section[layout-fill="layout-fill"] md-toolbar + md-content {
   margin-right: 200px; }
 
 #jsxc_chatIcon {
@@ -4474,7 +4492,7 @@ div#jsxc_windowList, div#jsxc_windowListSB {
 }
 
 div#jsxc_roster .slimScrollDiv {
-   left: 0px; 
+   left: 0px;
 }
 
 #jsxc_dialog {
