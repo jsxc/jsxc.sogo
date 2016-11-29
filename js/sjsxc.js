@@ -52,12 +52,12 @@
    }
 
    function onRosterReady() {
+      injectChatIcon();
+
       if ($(window).width() < 768) {
           // Do not resize elements on extra small devices (bootstrap definition)
           return;
       }
-
-      injectChatIcon();
 
         if ($('#jsxc_roster').hasClass('jsxc_state_hidden')) {
            $('body').removeClass('jsxc_rosterVisible');
