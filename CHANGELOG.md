@@ -1,3 +1,8 @@
+v3.1.0 / 2017-02-14
+===
+- upgrade jsxc to v3.1.0 ([change log](https://github.com/jsxc/jsxc/blob/master/CHANGELOG.md))
+- fix chat icon injection on extra small devices (fix jsxc/jsxc#414)
+
 v3.0.1 / 2016-10-28
 ===
 - upgrade jsxc to v3.0.1
