@@ -1,3 +1,7 @@
+v3.1.1 / 2017-02-14
+===
+- upgrade jsxc to v3.1.1 ([change log](https://github.com/jsxc/jsxc/blob/master/CHANGELOG.md))
+
 v3.1.0 / 2017-02-14
 ===
 - upgrade jsxc to v3.1.0 ([change log](https://github.com/jsxc/jsxc/blob/master/CHANGELOG.md))
