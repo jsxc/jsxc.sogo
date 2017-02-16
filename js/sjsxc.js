@@ -152,7 +152,7 @@
             jid: '#login [ng-model="app.creds.username"]',
             pass: '#login [ng-model="app.creds.password"]',
             onConnecting: 'quiet',
-            onAuthFail: 'quiet',
+            onAuthFail: 'submit',
             ifFound: 'force'
          },
          logoutElement: '[href="../logoff"]',
@@ -171,10 +171,16 @@
             $('#login button[type="submit"]:first').click(function(ev) {
                var conn = jsxc.xmpp.conn;
 
-               if (!(conn && conn.connected && conn.authenticated)) {
+               var submitLoginForm = $(this).data('submitLoginForm');
+               if(submitLoginForm){
+                  $(this).data('submitLoginForm', false);
+               }
+
+               if (!(conn && conn.connected && conn.authenticated) && !submitLoginForm) {
                   ev.stopPropagation();
                   ev.preventDefault();
 
+                  // trigger our own connection function
                   $(jsxc.options.loginForm.form).submit();
                }
             });
@@ -191,6 +197,52 @@
          var alt = $('<p id="jsxc_alt"/>').append(link);
          $('#submit').before(alt);
       }*/
+   };
+
+   jsxc.submitLoginForm = function() {
+      var form = $(jsxc.options.loginForm.form).off('submit');
+
+      // Attach original events
+      var submits = form.data('submits') || [];
+      $.each(submits, function(index, val) {
+         form.submit(val);
+      });
+
+      if (form.find('#submit').length > 0) {
+         form.find('#submit').data('submitLoginForm', true);
+         form.find('#submit').click();
+      } else if (form.find('[type="submit"]').length > 0) {
+         form.find('[type="submit"]').click();
+      } else if (form.get(0) && typeof form.get(0).submit === 'function') {
+         form.submit();
+      } else {
+         jsxc.warn('Could not submit login form.');
+      }
+
+      form.submit(function(ev) {
+         ev.preventDefault();
+
+         jsxc.prepareLogin(function(settings) {
+            if (settings !== false) {
+               // settings.xmpp.onlogin is deprecated since v2.1.0
+               var enabled = (settings.loginForm && settings.loginForm.enable) || (settings.xmpp && settings.xmpp.onlogin);
+               enabled = enabled === "true" || enabled === true;
+
+               if (enabled) {
+                  jsxc.options.loginForm.triggered = true;
+
+                  jsxc.xmpp.login(jsxc.options.xmpp.jid, jsxc.options.xmpp.password);
+
+                  return;
+               }
+            }
+
+            jsxc.submitLoginForm();
+         });
+
+         // Trigger submit in jsxc.xmpp.connected()
+         return false;
+      });
    };
 
    var sjsxc_init = function() {
