@@ -17,6 +17,15 @@ sjsxc.config = {
         /** which resource should be used? Blank, means random. */
         resource: '',
 
+        /** optional function to fine-tune JID;
+         * if undefined, login@domain/resource is used.
+         * The resource parameter here already has a / prepended */
+//        mkjid: function(login, domain, resource) {
+//                if (login == 'user1') return login + "@domain1.com" + resource;
+//                if (login == 'user2') return login + "@domain1.com" + resource;
+//                return login + '@' + domain + resource;
+//        },
+
         /** Allow user to overwrite xmpp settings? */
         overwrite: true,
 
