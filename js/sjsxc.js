@@ -52,8 +52,6 @@
    }
 
    function onRosterReady() {
-      injectChatIcon();
-
       if ($(window).width() < 768) {
           // Do not resize elements on extra small devices (bootstrap definition)
           return;
@@ -65,23 +63,39 @@
            $('body').addClass('jsxc_rosterVisible');
         }
 
-        function injectChatIcon() {
-          var settingsButton = $('md-toolbar a[ng-href$="Mail"]');
+        registerBodyObserver();
+   }
 
-          if (settingsButton.length === 0) {
-             setTimeout(injectChatIcon, 500);
-             return;
-          }
+   function injectChatIcon() {
+     var settingsButton = $('md-toolbar a[ng-href$="Mail"]');
 
-          var a = $('<a>');
-          a.addClass('md-icon-button md-button md-ink-ripple');
-          a.attr('id', 'jsxc_chatIcon');
-          a.click(function(){
-             jsxc.gui.roster.toggle();
-          });
+     var a = $('<a>');
+     a.addClass('md-icon-button md-button md-ink-ripple');
+     a.attr('id', 'jsxc_chatIcon');
+     a.click(function(){
+        jsxc.gui.roster.toggle();
+     });
 
-          settingsButton.after(a);
-       }
+     settingsButton.after(a);
+  }
+
+   function registerBodyObserver() {
+      var observer = new MutationObserver(function(mutations) {
+            if ($('#jsxc_chatIcon').length === 0) {
+               injectChatIcon();
+            }
+
+            // if ($('md-card').length > 0) {
+            //    jsxc.gui.detectEmail($('md-card'));
+            // }
+        });
+
+        observer.observe(document.getElementsByTagName('body')[0], {
+             attributes: false,
+             childList: true,
+             characterData: false,
+             subtree: true
+         });
    }
 
    function lazyLoadCss(val) {
