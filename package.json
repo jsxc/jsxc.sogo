@@ -2,28 +2,28 @@
   "name": "sjsxc",
   "version": "3.2.1-beta.1",
   "description": "Real-time chat app for SOGo v3",
-  "homepage": "http://jsxc.org/",
-  "bugs": "https://github.com/sualko/jsxc/issues",
+  "homepage": "https://www.jsxc.org/",
+  "bugs": "https://github.com/jsxc/jsxc/issues",
   "license": "MIT",
   "author": "Klaus Herberth <klaus@jsxc.org>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sualko/sjsxc"
+    "url": "https://github.com/jsxc/jsxc.sogo"
   },
   "devDependencies": {
-    "grunt": "~0.4.4",
-    "grunt-autoprefixer": "^3.0.0",
-    "grunt-banner": "~0.2.2",
-    "grunt-cli": "~0.1.13",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-compress": "^0.10.0",
-    "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-jshint": "~0.9.2",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-data-uri": "^0.2.0",
-    "grunt-sass": "1.0.0",
+    "grunt": "~1.0.1",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-banner": "~0.6.0",
+    "grunt-cli": "~1.2.0",
+    "grunt-contrib-clean": "~1.1.0",
+    "grunt-contrib-compress": "^1.4.3",
+    "grunt-contrib-copy": "~1.0.0",
+    "grunt-contrib-jshint": "~1.1.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-data-uri": "^0.3.0",
+    "grunt-sass": "^2.0.0",
     "grunt-search": "^0.1.6",
-    "grunt-text-replace": "^0.4.0",
-    "node-sass": "3.3.0"
+    "grunt-text-replace": "~0.4.0",
+    "node-sass": "4.5.3"
   }
 }
